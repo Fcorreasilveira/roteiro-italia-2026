@@ -1154,6 +1154,46 @@ routes.forEach(r=>{
   L.polyline([r.from,r.to],{color:r.color,weight:3,opacity:.7,dashArray:r.dash||null}).addTo(mainmap).bindPopup(r.name);
 });
 
+// === Substituição de URLs por imagens verificadas do Wikimedia Commons ===
+// Usa Special:FilePath que auto-redireciona para o thumbnail real, independente do hash do arquivo
+const imageOverrides = [
+  {kw:['polignano','lama monachile'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Polignano_a_mare_-Lama_Monachile.jpg?width=640'},
+  {kw:['capitolo','monopoli'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Monopoli_-_panorama_dal_castello.jpg?width=640'},
+  {kw:['alberobello','trulli'], url:'https://upload.wikimedia.org/wikipedia/commons/6/6a/Alberobello_trulli.JPG'},
+  {kw:['locorotondo'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Locorotondo_panorama.jpg?width=640'},
+  {kw:['martina franca'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Martina_Franca_Piazza_Plebiscito.jpg?width=640'},
+  {kw:['cisternino'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Cisternino_BR_Italy.jpg?width=640'},
+  {kw:['ostuni','città bianca','citta bianca'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Ostuni.jpg?width=640'},
+  {kw:['trani'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Trani_Cattedrale_e_castello.jpg?width=640'},
+  {kw:['santa croce'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Basilica_di_Santa_Croce_01.JPG?width=640'},
+  {kw:['lecce'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Lecce_Piazza_del_Duomo.jpg?width=640'},
+  {kw:['otranto'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Otranto_-_Castello.jpg?width=640'},
+  {kw:['baia dei turchi'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Baia_dei_Turchi_-_Otranto.jpg?width=640'},
+  {kw:['sassi','matera'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Sassi_di_Matera-BN.JPG?width=640'},
+  {kw:['cripta','peccato originale'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Cripta_del_Peccato_Originale_Matera.jpg?width=640'},
+  {kw:['belvedere'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Vista_sui_Sassi_di_Matera_da_Palazzo_Lanfranchi.JPG?width=640'},
+  {kw:['coliseu','colosseo'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Colosseum_in_Rome,_Italy_-_April_2007.jpg?width=640'},
+  {kw:['foro romano','palatino'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Roman_Forum_from_Palatine_Hill.jpg?width=640'},
+  {kw:['pantheon'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Rome-Pantheon-Exterior.jpg?width=640'},
+  {kw:['fontana di trevi','navona'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Trevi_Fountain,_Rome,_Italy_2_-_May_2007.jpg?width=640'},
+  {kw:['vaticano','são pedro','st peter','sao pedro'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Saint_Peter%27s_Square,_Vatican_City_-_April_2007.jpg?width=640'},
+  {kw:['basílica','basilica'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Basilica_di_San_Pietro_facade.jpg?width=640'},
+  {kw:['castel sant\'angelo','sant\'angelo'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Castel_Sant%27Angelo_e_il_ponte.jpg?width=640'},
+  {kw:['trastevere'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Trastevere_Santa_Maria.jpg?width=640'},
+  {kw:['sant\'eustachio','caffè'], url:'https://commons.wikimedia.org/wiki/Special:FilePath/Sant%27Eustachio_Il_Caffe_Rome.jpg?width=640'}
+];
+
+// Aplica overrides nas imagens da página
+document.querySelectorAll('.poi-card img').forEach(img=>{
+  const alt = (img.alt||'').toLowerCase();
+  for(const m of imageOverrides){
+    if(m.kw.some(k=>alt.includes(k))){
+      img.src = m.url;
+      break;
+    }
+  }
+});
+
 // === Fallback de imagens ===
 // Se a imagem do Wikimedia falhar, substitui por um cartão estilizado com o nome do local + emoji temático
 const iconMap = [
