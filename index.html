@@ -72,7 +72,16 @@ table.driving tr:last-child td{border-bottom:none}
 .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
 .poi-card{background:#fff;border:1px solid #f0e6d8;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
 .poi-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.1)}
-.poi-card img{width:100%;height:150px;object-fit:cover;background:linear-gradient(135deg,#e5d4a8 0%,#c7a86a 100%)}
+.poi-card img{width:100%;height:160px;object-fit:cover;background:linear-gradient(135deg,var(--primary) 0%,var(--accent) 100%);font-size:0;color:transparent}
+.poi-img-fallback{width:100%;height:160px;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;color:#fff;font-weight:600;font-size:1.05em;letter-spacing:.4px;line-height:1.3;text-shadow:0 1px 3px rgba(0,0,0,.25)}
+.poi-img-fallback::before{content:attr(data-icon);font-size:2.2em;display:block;margin-bottom:6px;opacity:.85;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}
+.poi-img-fallback.t-city{background:linear-gradient(135deg,#7c3a3a 0%,#b87333 100%)}
+.poi-img-fallback.t-beach{background:linear-gradient(135deg,#0a7e8c 0%,#4ec5d4 100%)}
+.poi-img-fallback.t-castle{background:linear-gradient(135deg,#5a2a2a 0%,#8c5a3a 100%)}
+.poi-img-fallback.t-church{background:linear-gradient(135deg,#3a2a5a 0%,#7c5aa8 100%)}
+.poi-img-fallback.t-rock{background:linear-gradient(135deg,#5a3a2a 0%,#8c6a4a 100%)}
+.poi-img-fallback.t-coffee{background:linear-gradient(135deg,#3a2a1a 0%,#6a4a3a 100%)}
+.poi-img-fallback.t-fountain{background:linear-gradient(135deg,#1a4a6a 0%,#4a8aaa 100%)}
 .poi-card .poi-info{padding:14px 16px;display:flex;flex-direction:column;flex:1}
 .poi-card h4{color:var(--primary);font-size:1em;margin-bottom:4px;font-weight:600}
 .poi-card .poi-meta{color:var(--accent);font-size:.78em;font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
@@ -1143,6 +1152,54 @@ const routes = [
 ];
 routes.forEach(r=>{
   L.polyline([r.from,r.to],{color:r.color,weight:3,opacity:.7,dashArray:r.dash||null}).addTo(mainmap).bindPopup(r.name);
+});
+
+// === Fallback de imagens ===
+// Se a imagem do Wikimedia falhar, substitui por um cartão estilizado com o nome do local + emoji temático
+const iconMap = [
+  {kw:['praia','baia','maldivas','turchi','beach','capitolo'], icon:'🏖️', cls:'t-beach'},
+  {kw:['catedral','basílica','vaticano','são pedro','santa croce','santa maria','duomo'], icon:'⛪', cls:'t-church'},
+  {kw:['castel','castello','aragonese','sant\'angelo'], icon:'🏰', cls:'t-castle'},
+  {kw:['sassi','matera','cripta','peccato','belvedere'], icon:'🪨', cls:'t-rock'},
+  {kw:['caffè','sant\'eustachio','café'], icon:'☕', cls:'t-coffee'},
+  {kw:['fontana','trevi','navona'], icon:'⛲', cls:'t-fountain'},
+  {kw:['coliseu','colosseo','foro','romano','pantheon','palatino'], icon:'🏛️', cls:'t-city'},
+  {kw:['polignano','lama monachile'], icon:'🌅', cls:'t-beach'},
+  {kw:['trulli','alberobello'], icon:'🏠', cls:'t-city'},
+  {kw:['ostuni','locorotondo','cisternino','martina','città bianca'], icon:'🤍', cls:'t-city'},
+  {kw:['lecce','barroco','barocco'], icon:'✨', cls:'t-city'},
+  {kw:['otranto','mare','adriatico'], icon:'🌊', cls:'t-beach'},
+  {kw:['trani'], icon:'⚓', cls:'t-church'},
+  {kw:['trastevere'], icon:'🏘️', cls:'t-city'},
+  {kw:['monopoli'], icon:'🏖️', cls:'t-beach'},
+];
+
+function classifyAlt(altText){
+  const lc = (altText||'').toLowerCase();
+  for(const m of iconMap){
+    for(const k of m.kw){
+      if(lc.includes(k)) return m;
+    }
+  }
+  return {icon:'📍', cls:'t-city'};
+}
+
+function makeFallback(altText){
+  const meta = classifyAlt(altText);
+  const div = document.createElement('div');
+  div.className = 'poi-img-fallback ' + meta.cls;
+  div.setAttribute('data-icon', meta.icon);
+  div.setAttribute('role','img');
+  div.setAttribute('aria-label', altText||'');
+  div.textContent = altText || '';
+  return div;
+}
+
+document.querySelectorAll('.poi-card img').forEach(img=>{
+  const swap = ()=>{ if(img.parentNode) img.replaceWith(makeFallback(img.alt)); };
+  img.addEventListener('error', swap);
+  // Para imagens já carregadas com erro antes do JS rodar
+  if(img.complete && img.naturalWidth === 0) swap();
 });
 </script>
 
