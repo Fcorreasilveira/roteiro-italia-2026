@@ -5,494 +5,219 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <meta name="googlebot" content="noindex, nofollow">
-<title>Roteiro Italia - Puglia + Roma - 24/08 a 03/09/2026</title>
+<title>Roteiro Itália · Puglia + Roma · 24/08 a 03/09/2026</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <style>
-:root { color-scheme: light; }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  background: #faf8f5;
-  color: #2a2a2a;
-  line-height: 1.6;
-}
-.hero {
-  background: linear-gradient(135deg, #7c3a3a 0%, #b87333 100%);
-  color: white;
-  padding: 60px 40px;
-  text-align: center;
-}
-.hero h1 { font-size: 2.6em; margin-bottom: 10px; font-weight: 300; letter-spacing: 1px; }
-.hero p { font-size: 1.15em; opacity: 0.95; }
-.hero .meta {
-  display: flex; justify-content: center; gap: 32px; margin-top: 28px;
-  flex-wrap: wrap;
-}
-.hero .meta div { padding: 4px 18px; border-left: 1px solid rgba(255,255,255,0.4); }
-.hero .meta div:first-child { border-left: none; }
-.hero .meta strong { display: block; font-size: 1.4em; font-weight: 500; }
-.container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+:root { color-scheme: light; --primary:#7c3a3a; --primary-dark:#5a2a2a; --accent:#b87333; --bg:#faf8f5; --card:#ffffff; --soft:#fff8f0; --text:#2a2a2a; --muted:#777; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+img{max-width:100%;display:block;background:#f0e6d8}
 
-.section-title {
-  font-size: 1.9em; color: #7c3a3a; margin: 40px 0 20px;
-  border-bottom: 3px solid #b87333; padding-bottom: 10px;
-  font-weight: 400;
-}
-.subsection-title {
-  font-size: 1.35em; color: #5a2a2a; margin: 30px 0 15px; font-weight: 500;
-}
+.hero{background:linear-gradient(135deg,var(--primary) 0%,var(--accent) 100%);color:#fff;padding:54px 32px;text-align:center}
+.hero h1{font-size:2.4em;margin-bottom:8px;font-weight:300;letter-spacing:1px}
+.hero p{font-size:1.08em;opacity:.95}
+.hero .meta{display:flex;justify-content:center;gap:24px;margin-top:24px;flex-wrap:wrap}
+.hero .meta div{padding:4px 14px;border-left:1px solid rgba(255,255,255,.35)}
+.hero .meta div:first-child{border-left:none}
+.hero .meta strong{display:block;font-size:1.4em;font-weight:500}
 
-.map-wrap {
-  background: white;
-  border-radius: 12px;
-  padding: 4px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  margin-bottom: 16px;
-  overflow: hidden;
-}
-.map-wrap iframe {
-  width: 100%; height: 520px; border: 0; border-radius: 10px; display: block;
-}
-.map-cta {
-  background: linear-gradient(135deg, #7c3a3a 0%, #b87333 100%);
-  color: white; padding: 18px 24px; border-radius: 10px;
-  text-align: center; margin: 18px 0 30px;
-  display: block; text-decoration: none;
-  box-shadow: 0 4px 12px rgba(124,58,58,0.25);
-  transition: transform 0.15s;
-}
-.map-cta:hover { transform: translateY(-2px); }
-.map-cta strong { display: block; font-size: 1.15em; margin-bottom: 4px; }
-.map-cta span { font-size: 0.9em; opacity: 0.92; }
+.container{max-width:1100px;margin:0 auto;padding:36px 18px}
+.section-title{font-size:1.7em;color:var(--primary);margin:36px 0 16px;border-bottom:3px solid var(--accent);padding-bottom:8px;font-weight:400}
 
-.route-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 14px; margin: 20px 0 30px;
-}
-.route-card {
-  background: white; padding: 18px; border-radius: 10px;
-  border-left: 4px solid #b87333;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  display: flex; flex-direction: column;
-}
-.route-card .route-label {
-  color: #7c3a3a; font-weight: 600; font-size: 0.85em;
-  text-transform: uppercase; letter-spacing: 0.5px;
-  margin-bottom: 4px;
-}
-.route-card h4 { color: #2a2a2a; font-size: 1.05em; margin-bottom: 8px; }
-.route-card .route-meta {
-  color: #777; font-size: 0.88em; margin-bottom: 12px;
-}
-.route-card a.gmaps {
-  display: inline-block; background: #4285F4; color: white !important;
-  padding: 8px 14px; border-radius: 6px; text-decoration: none;
-  font-size: 0.88em; margin-top: auto;
-  align-self: flex-start;
-}
-.route-card a.gmaps:hover { background: #2c66d4; }
-.route-card a.gmaps::before { content: "↗ "; }
+/* Map */
+.map-wrap{background:#fff;border-radius:12px;padding:4px;box-shadow:0 4px 12px rgba(0,0,0,.1);margin-bottom:12px;overflow:hidden}
+.map-cta{background:linear-gradient(135deg,var(--primary) 0%,var(--accent) 100%);color:#fff;padding:16px 22px;border-radius:10px;text-align:center;margin:16px 0 26px;display:block;text-decoration:none;box-shadow:0 4px 12px rgba(124,58,58,.25);transition:transform .15s}
+.map-cta:hover{transform:translateY(-2px)}
+.map-cta strong{display:block;font-size:1.1em;margin-bottom:3px}
+.map-cta span{font-size:.88em;opacity:.92}
+.map-legend{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;padding:12px;background:#fff;border-radius:8px;margin:10px 0 22px;box-shadow:0 2px 6px rgba(0,0,0,.05)}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:.88em;color:#444}
+.legend-dot{width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #ccc}
 
-.summary-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px; margin: 30px 0;
-}
-.summary-card {
-  background: white; padding: 20px; border-radius: 10px;
-  border-left: 4px solid #b87333; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-.summary-card h3 { color: #7c3a3a; margin-bottom: 6px; font-size: 1em; font-weight: 600; }
-.summary-card .big { font-size: 1.4em; color: #2a2a2a; font-weight: 500; }
-.summary-card .small { color: #777; font-size: 0.88em; margin-top: 4px; }
+/* Bases overview */
+.bases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0 30px}
+.base-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08);display:flex;flex-direction:column}
+.base-header{padding:14px 18px;color:#fff;background:var(--primary)}
+.base-card.b2 .base-header{background:var(--primary-dark)}
+.base-card.b3 .base-header{background:#3a2a7c}
+.base-header h3{font-size:1.1em;font-weight:600}
+.base-header .base-meta{font-size:.84em;opacity:.9;margin-top:3px}
+.base-card .covers{padding:14px 18px;font-size:.92em;color:#444}
+.base-card .covers strong{color:var(--primary)}
 
-.day {
-  background: white; margin: 25px 0; border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden;
-}
-.day-header {
-  background: #7c3a3a; color: white; padding: 18px 24px;
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 10px;
-}
-.day-header h2 { font-size: 1.3em; font-weight: 500; }
-.day-header .day-tag {
-  background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px;
-  font-size: 0.85em;
-}
-.day-body { padding: 24px; }
-.day-banner {
-  background: linear-gradient(135deg, #fff8f0 0%, #ffeaca 100%);
-  padding: 14px 18px; border-radius: 8px; margin-bottom: 18px;
-  border-left: 4px solid #b87333;
-  font-style: italic; color: #5a2a2a;
-}
+/* Logistics */
+table.driving{width:100%;background:#fff;border-collapse:collapse;margin:16px 0 24px;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+table.driving th{background:var(--primary);color:#fff;padding:11px;text-align:left;font-size:.9em}
+table.driving td{padding:11px;border-bottom:1px solid #f0e6d8;font-size:.9em}
+table.driving tr:last-child td{border-bottom:none}
 
-.timeline { margin-top: 8px; }
-.timeline-item {
-  display: flex; gap: 16px; padding: 12px 0;
-  border-bottom: 1px dashed #e5e0d8;
-}
-.timeline-item:last-child { border-bottom: none; }
-.timeline-time {
-  flex-shrink: 0; width: 80px; font-weight: 600; color: #b87333;
-  font-size: 0.92em;
-}
-.timeline-content { flex: 1; }
-.timeline-content strong { color: #5a2a2a; }
-.timeline-content a { color: #7c3a3a; text-decoration: none; border-bottom: 1px dotted #b87333; }
-.timeline-content a:hover { color: #b87333; }
+/* Tip box */
+.tip-box{background:linear-gradient(135deg,var(--soft) 0%,#ffeaca 100%);padding:16px 20px;border-radius:10px;margin:16px 0;border-left:4px solid var(--accent)}
+.tip-box h4{color:var(--primary);margin-bottom:6px;font-size:1em}
+.tip-box p{font-size:.92em}
 
-.attractions {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px; margin: 16px 0;
-}
-.attraction {
-  background: #fff8f0; border-radius: 8px; padding: 14px;
-  border-left: 3px solid #b87333;
-}
-.attraction .icon { font-size: 1.6em; margin-bottom: 6px; }
-.attraction h5 { color: #7c3a3a; font-size: 0.98em; margin-bottom: 4px; }
-.attraction p { font-size: 0.83em; color: #555; }
+/* Day card */
+.day{background:#fff;margin:22px 0;border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,.08);overflow:hidden}
+.day-header{background:var(--primary);color:#fff;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.day-header h2{font-size:1.2em;font-weight:500}
+.day-header .day-tag{background:rgba(255,255,255,.18);padding:4px 12px;border-radius:18px;font-size:.82em}
+.day-body{padding:22px}
+.day-intro{background:linear-gradient(135deg,var(--soft) 0%,#ffeaca 100%);padding:12px 16px;border-radius:8px;margin-bottom:18px;border-left:4px solid var(--accent);font-style:italic;color:var(--primary-dark);font-size:.95em}
 
-.hotel-card {
-  background: white; padding: 22px; border-radius: 10px;
-  margin: 15px 0; border: 1px solid #f0e6d8;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-.hotel-card h4 { color: #7c3a3a; font-size: 1.2em; margin-bottom: 6px; }
-.hotel-card .price { color: #b87333; font-weight: 600; margin: 6px 0; font-size: 0.95em; }
-.hotel-card .tags { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0; }
-.hotel-card .tag {
-  background: #ffeaca; color: #7c3a3a; padding: 3px 10px;
-  border-radius: 12px; font-size: 0.78em;
-}
-.hotel-card p { margin: 10px 0; font-size: 0.95em; }
-.hotel-card .btn {
-  display: inline-block; background: #7c3a3a; color: white !important;
-  padding: 8px 16px; border-radius: 6px; text-decoration: none;
-  margin-top: 6px; margin-right: 8px; font-size: 0.9em;
-  border: none;
-}
-.hotel-card .btn:hover { background: #b87333; }
-.hotel-card .btn.alt { background: #b87333; }
-.hotel-card .btn.alt:hover { background: #7c3a3a; }
+.day-section{color:var(--primary);font-size:1em;font-weight:600;margin:22px 0 12px;letter-spacing:.3px;display:flex;align-items:center;gap:6px;text-transform:uppercase}
+.day-section:first-of-type{margin-top:8px}
 
-.restaurant-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 14px; margin: 20px 0;
-}
-.restaurant {
-  background: white; padding: 16px; border-radius: 8px;
-  border: 1px solid #f0e6d8;
-}
-.restaurant h4 { color: #7c3a3a; margin-bottom: 4px; font-size: 1.02em; }
-.restaurant .meta { color: #888; font-size: 0.82em; margin-bottom: 8px; }
-.restaurant p { font-size: 0.9em; }
-.restaurant a {
-  display: inline-block; margin-top: 8px; color: #b87333;
-  text-decoration: none; font-size: 0.88em; font-weight: 500;
-}
+/* POI cards */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.poi-card{background:#fff;border:1px solid #f0e6d8;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
+.poi-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.1)}
+.poi-card img{width:100%;height:150px;object-fit:cover;background:linear-gradient(135deg,#e5d4a8 0%,#c7a86a 100%)}
+.poi-card .poi-info{padding:14px 16px;display:flex;flex-direction:column;flex:1}
+.poi-card h4{color:var(--primary);font-size:1em;margin-bottom:4px;font-weight:600}
+.poi-card .poi-meta{color:var(--accent);font-size:.78em;font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
+.poi-card p{font-size:.88em;color:#555;margin-bottom:10px;flex:1}
+.poi-card a{display:inline-block;color:var(--primary);font-size:.85em;text-decoration:none;font-weight:500;align-self:flex-start;border-bottom:1px dotted var(--accent);padding-bottom:1px}
+.poi-card a:hover{color:var(--accent)}
+.poi-card.option{opacity:.85;border-style:dashed}
+.poi-card.option .poi-meta::before{content:"OPCIONAL · "}
 
-.tip-box {
-  background: linear-gradient(135deg, #fff8f0 0%, #ffeaca 100%);
-  padding: 18px 22px; border-radius: 10px; margin: 20px 0;
-  border-left: 4px solid #b87333;
-}
-.tip-box h4 { color: #7c3a3a; margin-bottom: 8px; }
+/* Restaurant cards */
+.resto-card{background:var(--soft);border-left:4px solid var(--accent);border-radius:8px;padding:14px 16px}
+.resto-card h4{color:var(--primary);font-size:1em;margin-bottom:3px;font-weight:600}
+.resto-card .resto-meta{color:var(--muted);font-size:.8em;margin-bottom:8px}
+.resto-card p{font-size:.88em;color:#555;margin-bottom:8px}
+.resto-card a{color:var(--primary);font-size:.85em;text-decoration:none;font-weight:500;border-bottom:1px dotted var(--accent)}
 
-table.driving {
-  width: 100%; background: white; border-collapse: collapse;
-  margin: 20px 0; border-radius: 8px; overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-table.driving th { background: #7c3a3a; color: white; padding: 12px; text-align: left; font-size: 0.92em; }
-table.driving td { padding: 12px; border-bottom: 1px solid #f0e6d8; font-size: 0.92em; }
-table.driving tr:last-child td { border-bottom: none; }
+/* Timeline (compact, collapsible) */
+.timeline-toggle{margin-top:20px;background:#fff8f0;padding:0;border-radius:8px;border:1px solid #f0e6d8}
+.timeline-toggle summary{cursor:pointer;padding:12px 16px;color:var(--primary);font-weight:600;font-size:.92em;list-style:none;outline:none}
+.timeline-toggle summary::before{content:"▸ ";color:var(--accent)}
+.timeline-toggle[open] summary::before{content:"▾ "}
+.timeline-toggle summary:hover{background:#fff3e0}
+.timeline{padding:4px 16px 14px}
+.timeline-item{display:flex;gap:14px;padding:10px 0;border-bottom:1px dashed #e5e0d8;font-size:.9em}
+.timeline-item:last-child{border-bottom:none}
+.timeline-time{flex-shrink:0;width:70px;font-weight:600;color:var(--accent);font-size:.88em}
+.timeline-content{flex:1;color:#444}
+.timeline-content strong{color:var(--primary-dark)}
 
-.checklist {
-  background: white; padding: 22px; border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin: 20px 0;
-}
-.checklist h3 { color: #7c3a3a; margin-bottom: 10px; font-size: 1.15em; }
-.checklist ul { list-style: none; padding: 0; }
-.checklist li {
-  padding: 8px 0 8px 28px; position: relative;
-  border-bottom: 1px dashed #e5e0d8; font-size: 0.95em;
-}
-.checklist li::before {
-  content: "OK"; position: absolute; left: 0; color: #b87333; font-weight: bold; font-size: 0.85em;
-}
-.checklist li:last-child { border-bottom: none; }
+/* Hotel card */
+.hotel-card{background:#fff;padding:20px;border-radius:10px;margin:14px 0;border:1px solid #f0e6d8;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.hotel-card.confirmed{border:2px solid #2a8c3a;background:linear-gradient(135deg,#fff 0%,#f0fff4 100%)}
+.hotel-card .confirmed-badge{display:inline-block;background:#2a8c3a;color:#fff;padding:3px 11px;border-radius:14px;font-size:.75em;font-weight:600;margin-bottom:6px;letter-spacing:.5px}
+.hotel-card h4{color:var(--primary);font-size:1.15em;margin-bottom:5px}
+.hotel-card .price{color:var(--accent);font-weight:600;margin:5px 0;font-size:.92em}
+.hotel-card .tags{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.hotel-card .tag{background:#ffeaca;color:var(--primary);padding:2px 10px;border-radius:12px;font-size:.76em}
+.hotel-card p{margin:8px 0;font-size:.92em}
+.hotel-card .btn{display:inline-block;background:var(--primary);color:#fff!important;padding:7px 14px;border-radius:6px;text-decoration:none;margin-top:6px;margin-right:6px;font-size:.86em}
+.hotel-card .btn:hover{background:var(--accent)}
+.hotel-card .btn.alt{background:var(--accent)}
+.hotel-card .btn.alt:hover{background:var(--primary)}
 
-footer {
-  background: #2a1a1a; color: #ddd; padding: 30px;
-  text-align: center; margin-top: 60px; font-size: 0.9em;
-}
-footer em { color: #b87333; }
+/* Checklist */
+.checklist{background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.06);margin:16px 0}
+.checklist h3{color:var(--primary);margin-bottom:8px;font-size:1.1em}
+.checklist ul{list-style:none;padding:0}
+.checklist li{padding:6px 0 6px 26px;position:relative;border-bottom:1px dashed #e5e0d8;font-size:.92em}
+.checklist li::before{content:"OK";position:absolute;left:0;color:var(--accent);font-weight:bold;font-size:.78em;top:8px}
+.checklist li:last-child{border-bottom:none}
 
-@media (max-width: 700px) {
-  .hero h1 { font-size: 1.9em; }
-  .hero .meta { gap: 16px; }
-  .hero .meta div { border-left: none; padding: 8px 0; }
-  .day-body { padding: 16px; }
-  .timeline-time { width: 60px; font-size: 0.85em; }
+footer{background:#2a1a1a;color:#ddd;padding:26px;text-align:center;margin-top:50px;font-size:.88em}
+footer em{color:var(--accent)}
+
+@media (max-width:780px){
+  .hero h1{font-size:1.8em}
+  .hero .meta{gap:14px}
+  .hero .meta div{border-left:none;padding:6px 0}
+  .day-body{padding:16px}
+  .bases-grid{grid-template-columns:1fr}
+  .cards-grid{grid-template-columns:1fr}
+  .timeline-time{width:60px;font-size:.82em}
 }
 </style>
 </head>
 <body>
 
 <div class="hero">
-  <h1>Italia · 11 dias entre Puglia e Roma</h1>
-  <p>Roteiro completo para 2 casais · 24 de agosto a 03 de setembro de 2026</p>
+  <h1>Itália · Puglia & Roma</h1>
+  <p>11 dias · 2 casais · 24 de agosto a 03 de setembro de 2026</p>
   <div class="meta">
     <div><strong>11</strong>dias</div>
-    <div><strong>7</strong>noites Puglia</div>
+    <div><strong>4</strong>noites Monopoli</div>
+    <div><strong>3</strong>noites Lecce</div>
     <div><strong>3</strong>noites Roma</div>
-    <div><strong>~1.300</strong>km de estrada</div>
-    <div><strong>2</strong>hoteis na Puglia</div>
+    <div><strong>~1.300</strong>km</div>
   </div>
 </div>
 
 <div class="container">
 
-<h2 class="section-title">Mapa do roteiro — Google Maps</h2>
+<h2 class="section-title">Mapa do roteiro</h2>
+<p>Mapa interativo com todas as cidades, praias e rotas. Clique nos marcadores, arraste para mover, role para zoom.</p>
 
-<p>Mapa interativo centrado em Ostuni (coração da Puglia), zoom 8 para mostrar toda a região do roteiro. Use os controles do Google Maps para navegar livremente.</p>
-
-<div class="map-wrap">
-<iframe
-  src="https://maps.google.com/maps?q=Ostuni,Italy&z=8&output=embed"
-  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-</iframe>
+<div class="map-wrap" style="padding:0">
+  <div id="mainmap" style="height:520px;border-radius:10px"></div>
 </div>
 
-<a class="map-cta" href="https://www.google.com/maps/dir/Aeroporto+di+Roma+Fiumicino/Polignano+a+Mare+BA+Italy/Alberobello+BA+Italy/Ostuni+BR+Italy/Lecce+LE+Italy/Otranto+LE+Italy/Gallipoli+LE+Italy/Santa+Maria+di+Leuca+LE+Italy/Matera+MT+Italy/Trani+BT+Italy/Roma+RM+Italy" target="_blank">
-  <strong>↗ Abrir TODO o roteiro multi-paradas no Google Maps</strong>
-  <span>Roma FCO → Polignano → Alberobello → Ostuni → Lecce → Otranto → Gallipoli → S. M. di Leuca → Matera → Trani → Roma</span>
+<div class="map-legend">
+  <div class="legend-item"><span class="legend-dot" style="background:#7c3a3a"></span> Bases (4+3+3 noites)</div>
+  <div class="legend-item"><span class="legend-dot" style="background:#b87333"></span> Cidades a visitar</div>
+  <div class="legend-item"><span class="legend-dot" style="background:#0a7e8c"></span> Praias destacadas</div>
+  <div class="legend-item"><span class="legend-dot" style="background:#5a2a8c"></span> Day trip (Matera)</div>
+</div>
+
+<a class="map-cta" href="https://www.google.com/maps/dir/Aeroporto+di+Roma+Fiumicino/Monopoli+BA+Italy/Polignano+a+Mare+BA+Italy/Alberobello+BA+Italy/Ostuni+BR+Italy/Lecce+LE+Italy/Otranto+LE+Italy/Matera+MT+Italy/Trani+BT+Italy/Roma+RM+Italy" target="_blank">
+  <strong>↗ Abrir o roteiro completo no Google Maps</strong>
+  <span>FCO → Monopoli → Polignano → Alberobello → Ostuni → Lecce → Otranto → Matera → Trani → Roma</span>
 </a>
 
-<h3 class="subsection-title">Rotas dirigíveis — clique para abrir a direção real no Google Maps</h3>
-
-<div class="route-grid">
-
-  <div class="route-card">
-    <div class="route-label">Dia 1 · trajeto longo</div>
-    <h4>Roma FCO → Monopoli</h4>
-    <div class="route-meta">540 km · ~5h30 · pedágio €38</div>
-    <a class="gmaps" href="https://www.google.com/maps/dir/Aeroporto+di+Roma+Fiumicino/Monopoli+BA+Italy" target="_blank">Ver rota no Google Maps</a>
+<h2 class="section-title">As 3 bases · o que cada uma cobre</h2>
+<div class="bases-grid">
+  <div class="base-card b1">
+    <div class="base-header">
+      <h3>★ Monopoli</h3>
+      <div class="base-meta">4 noites · 24-28/08</div>
+    </div>
+    <div class="covers">
+      <strong>Cobre:</strong> Polignano a Mare, Alberobello, Locorotondo, Martina Franca, Cisternino, Ostuni, praias de Capitolo/Savelletri, Trani (drive 1h20). Costa adriática + Valle d'Itria.
+    </div>
   </div>
-
-  <div class="route-card">
-    <div class="route-label">Dia 2 · circuito Valle d'Itria</div>
-    <h4>Monopoli → Alberobello → Locorotondo → Martina Franca → Cisternino → Monopoli</h4>
-    <div class="route-meta">~80 km no total · drive cênico pela serra</div>
-    <a class="gmaps" href="https://www.google.com/maps/dir/Monopoli+BA+Italy/Alberobello+BA+Italy/Locorotondo+BA+Italy/Martina+Franca+TA+Italy/Cisternino+BR+Italy/Monopoli+BA+Italy" target="_blank">Ver rota no Google Maps</a>
+  <div class="base-card b2">
+    <div class="base-header">
+      <h3>★ Lecce</h3>
+      <div class="base-meta">3 noites · 28-31/08</div>
+    </div>
+    <div class="covers">
+      <strong>Cobre:</strong> Centro barroco de Lecce, Otranto, Baia dei Turchi, Matera (UNESCO · day trip 2h). Opção: Gallipoli + Maldivas do Salento se trocar Matera.
+    </div>
   </div>
-
-  <div class="route-card">
-    <div class="route-label">Dia 3 · costa</div>
-    <h4>Monopoli ↔ Polignano a Mare</h4>
-    <div class="route-meta">~25 km · curtinho, beira-mar</div>
-    <a class="gmaps" href="https://www.google.com/maps/dir/Monopoli+BA+Italy/Polignano+a+Mare+BA+Italy/Monopoli+BA+Italy" target="_blank">Ver rota no Google Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Dia 4 · mudança de base</div>
-    <h4>Monopoli → Ostuni → Lecce</h4>
-    <div class="route-meta">~140 km · ~1h30 · com parada em Ostuni</div>
-    <a class="gmaps" href="https://www.google.com/maps/dir/Monopoli+BA+Italy/Ostuni+BR+Italy/Lecce+LE+Italy" target="_blank">Ver rota no Google Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Dia 5 · costa adriática</div>
-    <h4>Lecce → Otranto → Baia dei Turchi → Lecce</h4>
-    <div class="route-meta">~110 km · barroco + praia selvagem</div>
-    <a class="gmaps" href="https://www.google.com/maps/dir/Lecce+LE+Italy/Otranto+LE+Italy/Baia+dei+Turchi+Otranto+Italy/Lecce+LE+Italy" target="_blank">Ver rota no Google Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Dia 6 · costa jônica</div>
-    <h4>Lecce → Gallipoli → Pescoluse → Santa Maria di Leuca → Lecce</h4>
-    <div class="route-meta">~200 km · dia inteiro de praia + cidade velha</div>
-    <a class="gmaps" href="https://www.google.com/maps/dir/Lecce+LE+Italy/Gallipoli+LE+Italy/Pescoluse+LE+Italy/Santa+Maria+di+Leuca+LE+Italy/Lecce+LE+Italy" target="_blank">Ver rota no Google Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Dia 7 · day trip</div>
-    <h4>Lecce ↔ Matera (Basilicata)</h4>
-    <div class="route-meta">310 km ida e volta · ~2h cada via · Sassi UNESCO</div>
-    <a class="gmaps" href="https://www.google.com/maps/dir/Lecce+LE+Italy/Matera+MT+Italy/Lecce+LE+Italy" target="_blank">Ver rota no Google Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Dia 8 · volta longa</div>
-    <h4>Lecce → Trani → Roma</h4>
-    <div class="route-meta">600 km · ~6h00 com almoço estratégico em Trani</div>
-    <a class="gmaps" href="https://www.google.com/maps/dir/Lecce+LE+Italy/Trani+BT+Italy/Roma+RM+Italy" target="_blank">Ver rota no Google Maps</a>
-  </div>
-
-</div>
-
-<h3 class="subsection-title">Cidades e locais — clique para abrir o ponto no Google Maps</h3>
-
-<div class="route-grid">
-
-  <div class="route-card">
-    <div class="route-label">★ Base 1 · 3 noites</div>
-    <h4>Monopoli (BA)</h4>
-    <div class="route-meta">Centro histórico à beira-mar adriático</div>
-    <a class="gmaps" href="https://www.google.com/maps/place/Monopoli+BA+Italy" target="_blank">Abrir no Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Costa adriática</div>
-    <h4>Polignano a Mare (BA)</h4>
-    <div class="route-meta">Lama Monachile, Grotta Palazzese</div>
-    <a class="gmaps" href="https://www.google.com/maps/place/Polignano+a+Mare+BA+Italy" target="_blank">Abrir no Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Valle d'Itria · UNESCO</div>
-    <h4>Alberobello (BA)</h4>
-    <div class="route-meta">1.500 trulli, Rione Monti e Aia Piccola</div>
-    <a class="gmaps" href="https://www.google.com/maps/place/Alberobello+BA+Italy" target="_blank">Abrir no Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Vila branca circular</div>
-    <h4>Locorotondo (BA)</h4>
-    <div class="route-meta">Uma das mais belas da Itália</div>
-    <a class="gmaps" href="https://www.google.com/maps/place/Locorotondo+BA+Italy" target="_blank">Abrir no Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Cidade barroca</div>
-    <h4>Martina Franca (TA)</h4>
-    <div class="route-meta">Palácios nobres, Festival lírico</div>
-    <a class="gmaps" href="https://www.google.com/maps/place/Martina+Franca+TA+Italy" target="_blank">Abrir no Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Vila + fornelle</div>
-    <h4>Cisternino (BR)</h4>
-    <div class="route-meta">Açougueiros que grelham na hora</div>
-    <a class="gmaps" href="https://www.google.com/maps/place/Cisternino+BR+Italy" target="_blank">Abrir no Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Cidade Branca</div>
-    <h4>Ostuni (BR)</h4>
-    <div class="route-meta">Centro histórico todo branco no alto</div>
-    <a class="gmaps" href="https://www.google.com/maps/place/Ostuni+BR+Italy" target="_blank">Abrir no Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">★ Base 2 · 4 noites</div>
-    <h4>Lecce (LE)</h4>
-    <div class="route-meta">Capital do barroco leccese</div>
-    <a class="gmaps" href="https://www.google.com/maps/place/Lecce+LE+Italy" target="_blank">Abrir no Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Salento adriático</div>
-    <h4>Otranto (LE)</h4>
-    <div class="route-meta">Ponto mais oriental · Castelo Aragonese</div>
-    <a class="gmaps" href="https://www.google.com/maps/place/Otranto+LE+Italy" target="_blank">Abrir no Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Praia destaque</div>
-    <h4>Baia dei Turchi</h4>
-    <div class="route-meta">Selvagem · trilha 10min, água Caribe</div>
-    <a class="gmaps" href="https://www.google.com/maps/place/Baia+dei+Turchi+Otranto+Italy" target="_blank">Abrir no Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Salento jônico</div>
-    <h4>Gallipoli (LE)</h4>
-    <div class="route-meta">Città Vecchia sobre ilha amuralhada</div>
-    <a class="gmaps" href="https://www.google.com/maps/place/Gallipoli+LE+Italy" target="_blank">Abrir no Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Praia destaque</div>
-    <h4>Pescoluse — Maldivas do Salento</h4>
-    <div class="route-meta">Areia farinhenta, água turquesa rasa</div>
-    <a class="gmaps" href="https://www.google.com/maps/place/Pescoluse+LE+Italy" target="_blank">Abrir no Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Tip do tacão</div>
-    <h4>Santa Maria di Leuca (LE)</h4>
-    <div class="route-meta">Ponto + sul · Adriático ↔ Jônico</div>
-    <a class="gmaps" href="https://www.google.com/maps/place/Santa+Maria+di+Leuca+LE+Italy" target="_blank">Abrir no Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Day trip · UNESCO</div>
-    <h4>Matera (MT, Basilicata)</h4>
-    <div class="route-meta">Sassi · habitada há 9.000 anos</div>
-    <a class="gmaps" href="https://www.google.com/maps/place/Matera+MT+Italy" target="_blank">Abrir no Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Parada na volta</div>
-    <h4>Trani (BT)</h4>
-    <div class="route-meta">Catedral românica sobre o porto</div>
-    <a class="gmaps" href="https://www.google.com/maps/place/Trani+BT+Italy" target="_blank">Abrir no Maps</a>
-  </div>
-
-  <div class="route-card">
-    <div class="route-label">Chegada e volta</div>
-    <h4>Roma (RM)</h4>
-    <div class="route-meta">3 últimas noites · Centro Storico</div>
-    <a class="gmaps" href="https://www.google.com/maps/place/Roma+RM+Italy" target="_blank">Abrir no Maps</a>
-  </div>
-
-</div>
-
-
-<div class="summary-grid">
-  <div class="summary-card">
-    <h3>Chegada</h3>
-    <div class="big">24/08 10:15</div>
-    <div class="small">Roma FCO · LATAM 8120</div>
-  </div>
-  <div class="summary-card">
-    <h3>Base 1 — Puglia</h3>
-    <div class="big">24 → 27/08</div>
-    <div class="small">3 noites · Monopoli/Polignano</div>
-  </div>
-  <div class="summary-card">
-    <h3>Base 2 — Salento</h3>
-    <div class="big">27 → 31/08</div>
-    <div class="small">4 noites · Lecce</div>
-  </div>
-  <div class="summary-card">
-    <h3>Roma</h3>
-    <div class="big">31/08 → 03/09</div>
-    <div class="small">3 noites · Centro Storico</div>
-  </div>
-  <div class="summary-card">
-    <h3>Volta</h3>
-    <div class="big">03/09 13:05</div>
-    <div class="small">FCO → GRU · LATAM 8121</div>
+  <div class="base-card b3">
+    <div class="base-header">
+      <h3>★ Roma</h3>
+      <div class="base-meta">3 noites · 31/08-03/09</div>
+    </div>
+    <div class="covers">
+      <strong>Cobre:</strong> Coliseu + Fórum + Palatino, Pantheon, Trevi, Navona, Vaticano (Museus + Capela Sistina + São Pedro), Castel Sant'Angelo, Trastevere, Gianicolo.
+    </div>
   </div>
 </div>
 
 <h2 class="section-title">Logística do carro alugado</h2>
-<p>Recomendo retirar o carro no balcão da <strong>Hertz, Avis ou Sixt</strong> no terminal T3 de Fiumicino (FCO). Reservem com antecedência um carro categoria <em>Compact Premium</em> ou <em>Intermediate Wagon</em> (Volkswagen Golf, Peugeot 308 SW ou similar) — confortável para 4 adultos com bagagem, mas suficientemente compacto para as ruelas medievais de Ostuni e Locorotondo. Considerem o seguro complementar (CDW + zero franquia).</p>
+<p>Retirar o carro no balcão da <strong>Hertz, Avis ou Sixt</strong> em FCO (T3). Categoria <em>Compact Premium / Intermediate Wagon</em> (Volkswagen Golf, Peugeot 308 SW ou similar) — confortável para 4 adultos com bagagem, suficientemente compacto para as ruelas de Ostuni e Locorotondo. Seguro complementar (CDW + zero franquia) é fortemente recomendado.</p>
 
 <table class="driving">
   <tr><th>Trecho</th><th>Distância</th><th>Tempo médio</th><th>Pedágio aprox.</th></tr>
-  <tr><td>FCO → Polignano a Mare (24/08)</td><td>540 km</td><td>5h30</td><td>€38</td></tr>
-  <tr><td>Polignano → Lecce (27/08)</td><td>140 km</td><td>1h30</td><td>€6</td></tr>
+  <tr><td>FCO → Monopoli (24/08)</td><td>540 km</td><td>5h30</td><td>€38</td></tr>
+  <tr><td>Monopoli → Lecce (28/08)</td><td>140 km</td><td>1h30</td><td>€6</td></tr>
   <tr><td>Lecce → Matera (30/08, day trip)</td><td>155 km</td><td>2h00</td><td>€8 cada via</td></tr>
-  <tr><td>Lecce → Roma centro (31/08)</td><td>600 km</td><td>6h00</td><td>€42</td></tr>
+  <tr><td>Lecce → Roma (31/08)</td><td>600 km</td><td>6h00</td><td>€42</td></tr>
 </table>
 
 <div class="tip-box">
-  <h4>⚠ Atenção crítica — ZTL (Zona a Traffico Limitato)</h4>
-  <p>Lecce, Ostuni, Polignano e Roma têm zonas restritas ao tráfego. Multas chegam por correio até 1 ano depois (no cartão do aluguel). <strong>Não entrem nelas com o carro</strong> a menos que o hotel tenha emitido permissão prévia (perguntem ANTES no check-in). Sempre estacionem em parking público fora da zona e caminhem. Em Roma, devolvam o carro no aeroporto ou Termini antes de explorar a cidade.</p>
+  <h4>⚠ ZTL — Zona a Traffico Limitato</h4>
+  <p>Lecce, Ostuni, Polignano e Roma têm zonas restritas ao tráfego. Multas chegam por correio até 1 ano depois, no cartão do aluguel. <strong>Não entrem com o carro</strong> a menos que o hotel tenha emitido permissão prévia. Sempre estacionem em parking público fora da zona e caminhem. Em Roma, devolvam o carro no aeroporto ou Termini antes de explorar a cidade.</p>
 </div>
 
 <h2 class="section-title">Roteiro dia a dia</h2>
@@ -500,268 +225,475 @@ footer em { color: #b87333; }
 <!-- DIA 1 -->
 <div class="day">
   <div class="day-header">
-    <h2>Dia 1 · Segunda 24/08 — Chegada + estrada para a Puglia</h2>
-    <span class="day-tag">Roma → Monopoli · 540 km</span>
+    <h2>Dia 1 · Seg 24/08 — Chegada e estrada para Monopoli</h2>
+    <span class="day-tag">Roma → Monopoli · 540 km · NOITE 1/4</span>
   </div>
   <div class="day-body">
-    <div class="day-banner">Aterrissam em Fiumicino, pegam o carro e descem direto para o "tacão" da Itália. Não é o dia mais glamouroso, mas dá início à imersão na Puglia já no jantar.</div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-time">10:15</div>
-        <div class="timeline-content"><strong>Pouso em Fiumicino</strong>. Imigração, bagagens, retirada do carro alugado (~1h total). Café/lanche no terminal antes de pegar a estrada.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">12:00</div>
-        <div class="timeline-content">Saída de FCO pela <strong>A1 (Roma → Napoli)</strong>, depois <strong>A16 → A14</strong>. Use Waze ou Google Maps com tráfego ao vivo — agosto pega o "controesodo" italiano e a A14 perto de Bari engarrafa.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">14:00</div>
-        <div class="timeline-content"><strong>Parada para almoço</strong>: sugestão Caserta (ver o palácio real de relance se sobrar tempo) ou um Autogrill estilizado. Os Autogrills "Villoresi Est" e similares têm comida decente e WC limpos.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">18:30</div>
-        <div class="timeline-content"><strong>Chegada em Monopoli</strong>. Check-in no hotel (ver seção Hoteis abaixo). Banho, descanso.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">20:30</div>
-        <div class="timeline-content"><strong>Jantar leve</strong> no próprio hotel ou caminhar até o centro de Monopoli. Sugestões: <a href="https://www.donferrante.it/restaurant" target="_blank">Don Ferrante</a> (fine dining no penhasco), Osteria Perricci (tradicional, ótimo crudo de mar), ou pizza no Mangia Squarcio.</div>
+    <p class="day-intro">Aterrissam em Fiumicino, pegam o carro e descem direto para o "tacão" da Itália. Não é o dia mais glamouroso, mas dá início à imersão na Puglia já no jantar.</p>
+
+    <h3 class="day-section">📍 Destino do dia</h3>
+    <div class="cards-grid">
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Monopoli_BW_2016-10-16_15-29-57.jpg/640px-Monopoli_BW_2016-10-16_15-29-57.jpg" alt="Monopoli">
+        <div class="poi-info">
+          <h4>Monopoli</h4>
+          <div class="poi-meta">Base 1 · check-in 18h30</div>
+          <p>Cidadezinha murada sobre o Adriático, com porto pesqueiro ativo e centro histórico encantador. Base ideal para a costa norte e a Valle d'Itria.</p>
+          <a href="https://www.google.com/maps/place/Monopoli+BA,+Italy" target="_blank">Ver no Google Maps →</a>
+        </div>
       </div>
     </div>
+
+    <h3 class="day-section">🍽️ Onde jantar</h3>
+    <div class="cards-grid">
+      <div class="resto-card">
+        <h4>Don Ferrante (no hotel)</h4>
+        <div class="resto-meta">Monopoli · €€€€ · fine dining no penhasco</div>
+        <p>Cozinha autoral com vista para o Adriático, dentro das antigas muralhas. Ótima para chegar tarde sem se deslocar.</p>
+        <a href="https://www.donferrante.it/restaurant" target="_blank">Site oficial →</a>
+      </div>
+      <div class="resto-card">
+        <h4>Osteria Perricci</h4>
+        <div class="resto-meta">Monopoli centro · €€€ · tradicional</div>
+        <p>Trattoria de família, ótimo crudo de mar e pasta caseira. Caminhada do hotel, ambiente despretensioso.</p>
+        <a href="https://www.tripadvisor.it/Restaurant_Review-g652004-d2354881-Reviews-Osteria_Perricci-Monopoli_Province_of_Bari_Puglia.html" target="_blank">Tripadvisor →</a>
+      </div>
+    </div>
+
+    <details class="timeline-toggle">
+      <summary>Ver agenda detalhada</summary>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-time">10:15</div><div class="timeline-content"><strong>Pouso em Fiumicino</strong>. Imigração + bagagens + retirada do carro (~1h total). Café no terminal antes da estrada.</div></div>
+        <div class="timeline-item"><div class="timeline-time">12:00</div><div class="timeline-content">Saída pela <strong>A1</strong> (Roma → Napoli), <strong>A16 → A14</strong>. Use Waze; agosto pega o "controesodo" italiano.</div></div>
+        <div class="timeline-item"><div class="timeline-time">14:00</div><div class="timeline-content"><strong>Parada para almoço</strong> em Caserta (palácio real de relance) ou Autogrill estilizado.</div></div>
+        <div class="timeline-item"><div class="timeline-time">18:30</div><div class="timeline-content"><strong>Chegada em Monopoli</strong>. Check-in no Don Ferrante.</div></div>
+        <div class="timeline-item"><div class="timeline-time">20:30</div><div class="timeline-content"><strong>Jantar</strong> Don Ferrante ou Osteria Perricci.</div></div>
+      </div>
+    </details>
   </div>
 </div>
 
 <!-- DIA 2 -->
 <div class="day">
   <div class="day-header">
-    <h2>Dia 2 · Terça 25/08 — Trulli & Valle d'Itria</h2>
-    <span class="day-tag">Drive curto · ~60 km no total</span>
+    <h2>Dia 2 · Ter 25/08 — Polignano a Mare</h2>
+    <span class="day-tag">Drive curto · só costa · NOITE 2/4</span>
   </div>
   <div class="day-body">
-    <div class="day-banner">O dia das paisagens icônicas da Puglia: os trulli de Alberobello, as vilas brancas circulares do alto da serra, e o melhor da comida tradicional do interior.</div>
-    <div class="attractions">
-      <div class="attraction">
-        <div class="icon">🏛️</div>
-        <h5>Alberobello</h5><p>Patrimônio UNESCO — 1.500 trulli (casinhas cônicas de pedra). Comecem cedo, antes das 11h, para evitar excursões.</p>
+    <p class="day-intro">Primeiro dia inteiro descansado. Costa adriática, fotos icônicas em Polignano, almoço dentro de uma gruta sobre o mar, tarde de praia.</p>
+
+    <h3 class="day-section">📍 Atrações do dia</h3>
+    <div class="cards-grid">
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Polignano_a_Mare_lama_monachile.jpg/640px-Polignano_a_Mare_lama_monachile.jpg" alt="Polignano a Mare - Lama Monachile">
+        <div class="poi-info">
+          <h4>Polignano a Mare · Lama Monachile</h4>
+          <div class="poi-meta">20 min de Monopoli</div>
+          <p>A praia mais fotografada do sul da Itália, encaixada entre falésias. Centro histórico sobre o mar, estátua de Domenico Modugno (autor de "Volare").</p>
+          <a href="https://www.google.com/maps/place/Lama+Monachile,+Polignano+a+Mare" target="_blank">Ver no Google Maps →</a>
+        </div>
       </div>
-      <div class="attraction">
-        <div class="icon">⚪</div>
-        <h5>Locorotondo</h5><p>Uma das vilas mais belas da Itália. Plano circular medieval, casas brancas com telhados pontudos (cummerse).</p>
-      </div>
-      <div class="attraction">
-        <div class="icon">🏰</div>
-        <h5>Martina Franca</h5><p>Cidade barroca elegante, palácios nobres, sede do Festival della Valle d'Itria (lírico).</p>
-      </div>
-      <div class="attraction">
-        <div class="icon">🥩</div>
-        <h5>Cisternino</h5><p>Vila branca pequena, famosa pelas "fornelle" — açougues onde se escolhe a carne e o açougueiro grelha na hora.</p>
-      </div>
-    </div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-time">09:00</div>
-        <div class="timeline-content">Saída para <strong>Alberobello</strong> (~45min). Estacionar em Largo Martellotta. Comecem pela <strong>Rione Monti</strong> (mais comercial), depois <strong>Rione Aia Piccola</strong> (autêntico). Visitem o <a href="https://www.trullosovrano.eu/" target="_blank">Trullo Sovrano</a> (o único de 2 andares).</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">13:00</div>
-        <div class="timeline-content"><strong>Almoço em Locorotondo</strong> — sugestão <a href="https://quattropiazzelocorotondo.it/" target="_blank">Quattro Piazze</a> (charmoso, cozinha tradicional, ~€45/pax) ou La Taverna del Duca.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">15:30</div>
-        <div class="timeline-content"><strong>Cisternino</strong> — passeio pelo centro histórico, café na Piazza Vittorio Emanuele.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">17:00</div>
-        <div class="timeline-content"><strong>Martina Franca</strong> — Palazzo Ducale, Basílica di San Martino, aperitivo numa enoteca.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">20:30</div>
-        <div class="timeline-content"><strong>Jantar memorável</strong> na <a href="https://www.masseriailfrantoio.it/ristorante" target="_blank">Masseria Il Frantoio</a> em Ostuni — jantar degustação de 8 tempos, único na Puglia (€85/pax, agendar com semanas de antecedência).</div>
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Capitolo_-_Monopoli.jpg/640px-Capitolo_-_Monopoli.jpg" alt="Capitolo - Monopoli">
+        <div class="poi-info">
+          <h4>Praias de Capitolo</h4>
+          <div class="poi-meta">10 min · lidos elegantes</div>
+          <p>Faixa de praia com lidos privados (€25-40/pax com 2 espreguiçadeiras). Cala Paura em Polignano é alternativa mais selvagem.</p>
+          <a href="https://www.google.com/maps/place/Capitolo,+Monopoli+BA" target="_blank">Ver no Google Maps →</a>
+        </div>
       </div>
     </div>
+
+    <h3 class="day-section">🍽️ Onde comer</h3>
+    <div class="cards-grid">
+      <div class="resto-card">
+        <h4>Grotta Palazzese</h4>
+        <div class="resto-meta">Polignano · €€€€ · reserva 2-3 meses antes</div>
+        <p>Restaurante dentro de uma gruta sobre o mar, único no mundo. Caríssimo (€180-220/pax), experiência inesquecível.</p>
+        <a href="https://www.grottapalazzese.it/en/restaurant/" target="_blank">Site oficial →</a>
+      </div>
+      <div class="resto-card">
+        <h4>Antiche Mura</h4>
+        <div class="resto-meta">Polignano · €€€ · alternativa à Grotta</div>
+        <p>Cozinha refinada num palácio do séc. XV, terraço para o mar. Excelente custo-benefício (~€60/pax).</p>
+        <a href="https://www.ristoranteantichemura.it/" target="_blank">Site oficial →</a>
+      </div>
+      <div class="resto-card">
+        <h4>Lo Smeraldo</h4>
+        <div class="resto-meta">Monopoli · €€€ · peixe à beira mar</div>
+        <p>Jantar de peixe com vista. Boa para a noite após dia de praia.</p>
+        <a href="https://www.tripadvisor.it/Restaurant_Review-g652004-d8474196-Reviews-Lo_Smeraldo-Monopoli_Province_of_Bari_Puglia.html" target="_blank">Tripadvisor →</a>
+      </div>
+    </div>
+
+    <details class="timeline-toggle">
+      <summary>Ver agenda detalhada</summary>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-time">09:30</div><div class="timeline-content"><strong>Polignano a Mare</strong>. Estacionar fora da ZTL. Centro histórico, descida ao mirante de Lama Monachile.</div></div>
+        <div class="timeline-item"><div class="timeline-time">12:30</div><div class="timeline-content"><strong>Almoço Grotta Palazzese</strong> (reserva!) ou Antiche Mura.</div></div>
+        <div class="timeline-item"><div class="timeline-time">16:00</div><div class="timeline-content"><strong>Praia & relax</strong> em Capitolo ou Cala Paura.</div></div>
+        <div class="timeline-item"><div class="timeline-time">19:00</div><div class="timeline-content"><strong>Aperitivo</strong> em Monopoli centro, Piazza Garibaldi.</div></div>
+        <div class="timeline-item"><div class="timeline-time">21:00</div><div class="timeline-content"><strong>Jantar</strong> Lo Smeraldo ou Locanda sul Lago (Conversano).</div></div>
+      </div>
+    </details>
   </div>
 </div>
 
 <!-- DIA 3 -->
 <div class="day">
   <div class="day-header">
-    <h2>Dia 3 · Quarta 26/08 — Polignano & Monopoli</h2>
-    <span class="day-tag">Drive curtíssimo · só costa</span>
+    <h2>Dia 3 · Qua 26/08 — Trulli & Valle d'Itria</h2>
+    <span class="day-tag">~80 km · NOITE 3/4</span>
   </div>
   <div class="day-body">
-    <div class="day-banner">Dia de costa, fotos icônicas (Lama Monachile) e o tão falado almoço na gruta. Tarde de praia para recompor das estradas dos dias anteriores.</div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-time">09:30</div>
-        <div class="timeline-content"><strong>Polignano a Mare</strong> (~20min do hotel). Estacionem fora da ZTL. Centro histórico, estátua de Domenico Modugno (autor de "Volare"), descida ao mirante de <strong>Lama Monachile</strong> (a praia mais fotografada do Sul da Itália — chegue cedo para foto sem multidão).</div>
+    <p class="day-intro">As paisagens icônicas da Puglia: trulli de Alberobello, vilas brancas circulares da serra e o melhor da comida tradicional do interior. Termine com jantar de 8 tempos numa masseria histórica.</p>
+
+    <h3 class="day-section">📍 Atrações do dia</h3>
+    <div class="cards-grid">
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Alberobello_BW_2016-10-16_13-39-32.jpg/640px-Alberobello_BW_2016-10-16_13-39-32.jpg" alt="Alberobello - Trulli">
+        <div class="poi-info">
+          <h4>Alberobello · Trulli UNESCO</h4>
+          <div class="poi-meta">45 min · chegue antes das 11h</div>
+          <p>1.500 trulli — casas cônicas de pedra calcária sem argamassa. Rione Monti (comercial) e Rione Aia Piccola (autêntico). Visite o Trullo Sovrano.</p>
+          <a href="https://www.trullosovrano.eu/" target="_blank">Trullo Sovrano →</a>
+        </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-time">12:30</div>
-        <div class="timeline-content"><strong>Experiência única — almoço na <a href="https://www.grottapalazzese.it/en/restaurant/" target="_blank">Grotta Palazzese</a></strong>. Restaurante dentro de uma gruta sobre o mar. Caríssimo (€180-220/pax), mas único no mundo. <strong>Reserva obrigatória 2-3 meses antes.</strong> Alternativa excelente e mais acessível: Antiche Mura (~€60/pax).</div>
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Locorotondo_BW_2016-10-17_12-23-05.jpg/640px-Locorotondo_BW_2016-10-17_12-23-05.jpg" alt="Locorotondo">
+        <div class="poi-info">
+          <h4>Locorotondo</h4>
+          <div class="poi-meta">50 min · vila branca circular</div>
+          <p>Uma das vilas mais belas da Itália. Plano circular medieval, casas brancas com telhados pontudos (cummerse). Vinho branco DOC excelente.</p>
+          <a href="https://www.google.com/maps/place/Locorotondo+BA" target="_blank">Ver no Google Maps →</a>
+        </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-time">16:00</div>
-        <div class="timeline-content"><strong>Praia & relax</strong>. Se quiserem lido organizado (com guarda-sol + espreguiçadeira), <strong>Cala Paura</strong> em Polignano ou os lidos de <strong>Capitolo</strong> (€25-40/pessoa com 2 espreguiçadeiras).</div>
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Martina_Franca_BW_2016-10-16_15-04-32.jpg/640px-Martina_Franca_BW_2016-10-16_15-04-32.jpg" alt="Martina Franca">
+        <div class="poi-info">
+          <h4>Martina Franca</h4>
+          <div class="poi-meta">55 min · barroco elegante</div>
+          <p>Cidade barroca elegante, palácios nobres, sede do Festival della Valle d'Itria. Palazzo Ducale e Basílica di San Martino.</p>
+          <a href="https://www.google.com/maps/place/Martina+Franca+TA" target="_blank">Ver no Google Maps →</a>
+        </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-time">19:00</div>
-        <div class="timeline-content"><strong>Aperitivo em Monopoli centro</strong>. Spritz na Piazza Garibaldi.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">21:00</div>
-        <div class="timeline-content"><strong>Jantar</strong>: Lo Smeraldo (peixe ao lado do mar em Monopoli) ou Locanda sul Lago em Conversano (30min, dentro de um lago, romântico).</div>
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Cisternino_BW_2016-10-17_13-12-09.jpg/640px-Cisternino_BW_2016-10-17_13-12-09.jpg" alt="Cisternino">
+        <div class="poi-info">
+          <h4>Cisternino</h4>
+          <div class="poi-meta">50 min · fornelle (carne)</div>
+          <p>Vila branca pequena, famosa pelas "fornelle" — açougueiros que grelham bombette e salsicce na hora ao seu pedido.</p>
+          <a href="https://www.google.com/maps/place/Cisternino+BR" target="_blank">Ver no Google Maps →</a>
+        </div>
       </div>
     </div>
+
+    <h3 class="day-section">🍽️ Onde comer</h3>
+    <div class="cards-grid">
+      <div class="resto-card">
+        <h4>Quattro Piazze</h4>
+        <div class="resto-meta">Locorotondo · €€€ · almoço tradicional</div>
+        <p>Charmoso bistrô no centro de Locorotondo, cozinha pugliese refinada (~€45/pax). Boa pedida no caminho.</p>
+        <a href="https://quattropiazzelocorotondo.it/" target="_blank">Site oficial →</a>
+      </div>
+      <div class="resto-card">
+        <h4>Masseria Il Frantoio</h4>
+        <div class="resto-meta">Ostuni (campo) · €€€ · jantar 8 tempos · reserva imprescindível</div>
+        <p>Jantar lendário de 8 tempos numa masseria do séc. XVI. €85/pax, agendar com semanas. Uma das melhores experiências gastronômicas da Puglia.</p>
+        <a href="https://www.masseriailfrantoio.it/ristorante" target="_blank">Site oficial →</a>
+      </div>
+    </div>
+
+    <details class="timeline-toggle">
+      <summary>Ver agenda detalhada</summary>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-time">09:00</div><div class="timeline-content">Saída para <strong>Alberobello</strong>. Parking Largo Martellotta. Comece pela Rione Monti, depois Aia Piccola.</div></div>
+        <div class="timeline-item"><div class="timeline-time">13:00</div><div class="timeline-content"><strong>Almoço em Locorotondo</strong> — Quattro Piazze.</div></div>
+        <div class="timeline-item"><div class="timeline-time">15:30</div><div class="timeline-content"><strong>Cisternino</strong> — Piazza Vittorio Emanuele, café.</div></div>
+        <div class="timeline-item"><div class="timeline-time">17:00</div><div class="timeline-content"><strong>Martina Franca</strong> — Palazzo Ducale, aperitivo numa enoteca.</div></div>
+        <div class="timeline-item"><div class="timeline-time">20:30</div><div class="timeline-content"><strong>Jantar Masseria Il Frantoio</strong> — 8 tempos.</div></div>
+      </div>
+    </details>
   </div>
 </div>
 
 <!-- DIA 4 -->
 <div class="day">
   <div class="day-header">
-    <h2>Dia 4 · Quinta 27/08 — Ostuni & mudança para Lecce</h2>
-    <span class="day-tag">Drive · ~95 km + check-in Lecce</span>
+    <h2>Dia 4 · Qui 27/08 — Ostuni + tarde livre/Trani</h2>
+    <span class="day-tag">~30-180 km · NOITE 4/4 (última em Monopoli)</span>
   </div>
   <div class="day-body">
-    <div class="day-banner">Manhã na Cidade Branca, almoço com vista, e à tarde a transferência para a base 2. Primeiro toque na elegância barroca leccese ao entardecer.</div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-time">09:00</div>
-        <div class="timeline-content">Check-out do hotel 1. Carregar carro. Drive para <strong>Ostuni</strong> (~40min).</div>
+    <p class="day-intro">Última noite na base 1. Manhã na Cidade Branca, tarde flexível: praia preguiçosa em Capitolo ou drive até Trani para ver a catedral românica mais bonita da Puglia.</p>
+
+    <h3 class="day-section">📍 Atrações do dia</h3>
+    <div class="cards-grid">
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Ostuni_-_panoramio_%282%29.jpg/640px-Ostuni_-_panoramio_%282%29.jpg" alt="Ostuni - Città Bianca">
+        <div class="poi-info">
+          <h4>Ostuni · La Città Bianca</h4>
+          <div class="poi-meta">40 min · estacione no Foro Boario</div>
+          <p>Cidade branca sobre uma colina, ruelas labirínticas até a Cattedrale di Santa Maria Assunta (gótico tardio raro, rosácea de 24 raios) e Piazza della Libertà.</p>
+          <a href="https://www.google.com/maps/place/Ostuni+BR" target="_blank">Ver no Google Maps →</a>
+        </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-time">10:00</div>
-        <div class="timeline-content"><strong>Ostuni — "La Città Bianca"</strong>. Estacionem no Foro Boario (€2/h) e subam a pé. Ruelas brancas até a <strong>Cattedrale di Santa Maria Assunta</strong> (gótico tardio raro, rosácea de 24 raios), depois <strong>Piazza della Libertà</strong>. Gelato no Cremeria Borghi Antichi.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">13:00</div>
-        <div class="timeline-content"><strong>Almoço em Ostuni</strong> — <a href="https://www.osteriadeltempoperso.com/" target="_blank">Osteria del Tempo Perso</a> (cozinha cavada na rocha, atmosfera única, ~€55/pax) ou <a href="https://www.cieloristorantebistrot.it/" target="_blank">Cielo</a> no La Sommità (Michelin star, vista panorâmica, €90+/pax).</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">15:30</div>
-        <div class="timeline-content">Drive para <strong>Lecce</strong> (~1h15 pela SS379+SS613). Trajeto agradável, planície de oliveiras.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">17:00</div>
-        <div class="timeline-content"><strong>Check-in no hotel 2</strong>. Descansem e refresquem-se.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">19:30</div>
-        <div class="timeline-content"><strong>Primeiro passeio em Lecce</strong> ao entardecer — luz dourada na pedra leccese é mágica. Comecem na <strong>Piazza Sant'Oronzo</strong> e caminhem até a <strong>Piazza del Duomo</strong>.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">21:00</div>
-        <div class="timeline-content"><strong>Jantar especial — <a href="https://www.brosrestaurant.it/en/" target="_blank">Bros'</a></strong> (1 estrela Michelin, vanguardista, ~€180/pax) ou tradicional: <strong>Alle Due Corti</strong> (cozinha leccese autêntica, ~€40/pax).</div>
+      <div class="poi-card option">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Trani_BW_2016-10-19_13-39-44.jpg/640px-Trani_BW_2016-10-19_13-39-44.jpg" alt="Trani">
+        <div class="poi-info">
+          <h4>Trani · Catedral românica</h4>
+          <div class="poi-meta">1h20 · opção B da tarde</div>
+          <p>Catedral românica mais bonita da Puglia, plantada sobre o porto. Pôr do sol marítimo espetacular.</p>
+          <a href="https://www.google.com/maps/place/Cattedrale+di+Trani" target="_blank">Ver no Google Maps →</a>
+        </div>
       </div>
     </div>
+
+    <h3 class="day-section">🍽️ Onde comer</h3>
+    <div class="cards-grid">
+      <div class="resto-card">
+        <h4>Osteria del Tempo Perso</h4>
+        <div class="resto-meta">Ostuni · €€€ · almoço cavado na rocha</div>
+        <p>Restaurante dentro de uma antiga padaria escavada na pedra. Cucina tipica salentina, ambiente único (~€55/pax).</p>
+        <a href="https://www.osteriadeltempoperso.com/" target="_blank">Site oficial →</a>
+      </div>
+      <div class="resto-card">
+        <h4>Cielo (La Sommità)</h4>
+        <div class="resto-meta">Ostuni · €€€€ · 1 estrela Michelin</div>
+        <p>Estrelado no topo da cidade branca, terraço com vista para o vale. Para quem quer fechar com chave de ouro.</p>
+        <a href="https://www.cieloristorantebistrot.it/" target="_blank">Site oficial →</a>
+      </div>
+      <div class="resto-card">
+        <h4>Corteinfiore (se for a Trani)</h4>
+        <div class="resto-meta">Trani · €€€ · peixe num jardim</div>
+        <p>Ambiente jardim a poucos passos da catedral. Peixe fresco e crudo refinado.</p>
+        <a href="https://www.corteinfiore.it/" target="_blank">Site oficial →</a>
+      </div>
+    </div>
+
+    <details class="timeline-toggle">
+      <summary>Ver agenda detalhada</summary>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-time">09:30</div><div class="timeline-content">Drive para <strong>Ostuni</strong> (~40min). Foro Boario (€2/h) e subir a pé.</div></div>
+        <div class="timeline-item"><div class="timeline-time">10:00</div><div class="timeline-content"><strong>Tour pela Città Bianca</strong> — Catedral, Piazza della Libertà, gelato.</div></div>
+        <div class="timeline-item"><div class="timeline-time">13:00</div><div class="timeline-content"><strong>Almoço</strong> — Osteria del Tempo Perso ou Cielo.</div></div>
+        <div class="timeline-item"><div class="timeline-time">15:30</div><div class="timeline-content"><strong>Tarde:</strong> Capitolo (praia) ou Trani (drive 1h20).</div></div>
+        <div class="timeline-item"><div class="timeline-time">20:00</div><div class="timeline-content"><strong>Última jantar em Monopoli</strong>: Don Ferrante ou Osteria Perricci.</div></div>
+      </div>
+    </details>
   </div>
 </div>
 
 <!-- DIA 5 -->
 <div class="day">
   <div class="day-header">
-    <h2>Dia 5 · Sexta 28/08 — Lecce barroca + Otranto</h2>
-    <span class="day-tag">Drive · ~90 km no total</span>
+    <h2>Dia 5 · Sex 28/08 — Mudança para Lecce</h2>
+    <span class="day-tag">~140 km · 1h30 · NOITE 1/3 em Lecce</span>
   </div>
   <div class="day-body">
-    <div class="day-banner">Manhã imersa no barroco mais sofisticado da Itália, tarde no ponto mais oriental do país e banho em uma das praias mais bonitas do mediterrâneo.</div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-time">09:00</div>
-        <div class="timeline-content"><strong>Tour por Lecce barroca</strong>. Highlights: <strong>Basílica di Santa Croce</strong> (joia do barroco leccese, fachada com 24 anos de escultura), <strong>Anfiteatro Romano</strong> em Piazza Sant'Oronzo, <strong>Castello di Carlo V</strong>, <strong>Museu Faggiano</strong> (descoberta arqueológica num porão privado, fascinante), ateliers de <strong>cartapesta</strong> na Via Manfredi.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">13:00</div>
-        <div class="timeline-content"><strong>Almoço rápido em Lecce</strong> ou comprem <em>rustico leccese</em> (massa folhada com tomate, mussarela e bechamel) na Natale Pasticceria.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">14:30</div>
-        <div class="timeline-content">Drive para <strong>Otranto</strong> (~45min). Centro medieval, ponto mais oriental da Itália continental.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">15:30</div>
-        <div class="timeline-content"><strong>Otranto</strong> — Castello Aragonese, Catedral com o famoso mosaico do <em>Albero della Vita</em> (1163, deslumbrante), Cripta dos 800 Mártires.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">17:00</div>
-        <div class="timeline-content"><strong>Praia Baia dei Turchi</strong> (~15min de Otranto). Praia selvagem, água tipo Caribe, parking pago + trilha de 10min. Alternativa: <strong>Punta Palascìa</strong> (farol no ponto mais oriental).</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">20:30</div>
-        <div class="timeline-content"><strong>Jantar em Otranto à beira mar</strong> — La Bella Idrusa (peixe fresco, vista do castelo) ou volta para Lecce e jantar tarde no Trattoria Le Zie - Cucina Casereccia (autêntico, familiar, ~€35/pax).</div>
+    <p class="day-intro">Manhã tranquila, viagem curta até Lecce. Primeira tarde para conhecer o barroco leccese sob a luz dourada do fim do dia.</p>
+
+    <h3 class="day-section">📍 Destino do dia</h3>
+    <div class="cards-grid">
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Santa_Croce_Lecce.jpg/640px-Santa_Croce_Lecce.jpg" alt="Basílica de Santa Croce - Lecce">
+        <div class="poi-info">
+          <h4>Lecce · "A Florença do Sul"</h4>
+          <div class="poi-meta">Base 2 · check-in 15h</div>
+          <p>O ápice do barroco italiano, esculpido em pedra leccese dourada. Piazza Sant'Oronzo, anfiteatro romano e a deslumbrante Piazza del Duomo.</p>
+          <a href="https://www.google.com/maps/place/Lecce+LE" target="_blank">Ver no Google Maps →</a>
+        </div>
       </div>
     </div>
+
+    <h3 class="day-section">🍽️ Onde comer</h3>
+    <div class="cards-grid">
+      <div class="resto-card">
+        <h4>Alle Due Corti</h4>
+        <div class="resto-meta">Lecce centro · €€ · cucina povera autêntica</div>
+        <p>Cardápio em dialeto salentino. Peça orecchiette alle cime di rapa, sagne 'ncannulate, polpette de pão (~€40/pax).</p>
+        <a href="https://www.alleduecorti.com/" target="_blank">Site oficial →</a>
+      </div>
+      <div class="resto-card">
+        <h4>Bros'</h4>
+        <div class="resto-meta">Lecce · €€€€ · 1 estrela Michelin</div>
+        <p>Chef Floriano Pellegrino. Experiência teatral, ousada, vanguardista. Reserva imprescindível (~€180/pax).</p>
+        <a href="https://www.brosrestaurant.it/en/" target="_blank">Site oficial →</a>
+      </div>
+      <div class="resto-card">
+        <h4>Trattoria Nonna Tetti</h4>
+        <div class="resto-meta">Lecce · €€ · familiar e farto</div>
+        <p>Alternativa tradicional ao Bros'. Antipasti generosos, massas caseiras, ambiente de família.</p>
+        <a href="https://www.trattorianonnatetti.it/" target="_blank">Site oficial →</a>
+      </div>
+    </div>
+
+    <details class="timeline-toggle">
+      <summary>Ver agenda detalhada</summary>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-time">10:00</div><div class="timeline-content">Check-out tranquilo do Monopoli.</div></div>
+        <div class="timeline-item"><div class="timeline-time">11:00</div><div class="timeline-content">Drive para <strong>Lecce</strong> pela SS613.</div></div>
+        <div class="timeline-item"><div class="timeline-time">13:00</div><div class="timeline-content"><strong>Almoço Alle Due Corti</strong>.</div></div>
+        <div class="timeline-item"><div class="timeline-time">15:00</div><div class="timeline-content"><strong>Check-in Risorgimento Resort</strong>.</div></div>
+        <div class="timeline-item"><div class="timeline-time">17:30</div><div class="timeline-content"><strong>Primeira caminhada</strong> — Piazza Sant'Oronzo → Piazza del Duomo. Luz dourada na pedra leccese.</div></div>
+        <div class="timeline-item"><div class="timeline-time">20:30</div><div class="timeline-content"><strong>Jantar especial</strong>: Bros' (Michelin) ou Nonna Tetti.</div></div>
+      </div>
+    </details>
   </div>
 </div>
 
 <!-- DIA 6 -->
 <div class="day">
   <div class="day-header">
-    <h2>Dia 6 · Sábado 29/08 — Gallipoli & Salento ocidental</h2>
-    <span class="day-tag">Drive · ~120 km no total</span>
+    <h2>Dia 6 · Sáb 29/08 — Lecce + Otranto + Baia dei Turchi</h2>
+    <span class="day-tag">~100 km · NOITE 2/3</span>
   </div>
   <div class="day-body">
-    <div class="day-banner">Sábado de praia e cidade velha sobre uma ilha. Pôr-do-sol no ponto mais ao sul da bota italiana — onde Adriático encontra o Jônico.</div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-time">09:30</div>
-        <div class="timeline-content">Drive para <strong>Gallipoli</strong> (~45min). Estacione no parking público da cidade nova e atravesse a ponte para a <strong>Città Vecchia</strong> (ilha amuralhada).</div>
+    <p class="day-intro">Manhã imersa no barroco mais sofisticado da Itália. Tarde no ponto mais oriental do país e banho numa das praias mais bonitas do Mediterrâneo.</p>
+
+    <h3 class="day-section">📍 Atrações do dia</h3>
+    <div class="cards-grid">
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Santa_Croce_Lecce.jpg/640px-Santa_Croce_Lecce.jpg" alt="Basílica Santa Croce">
+        <div class="poi-info">
+          <h4>Basílica di Santa Croce</h4>
+          <div class="poi-meta">Centro · joia do barroco leccese</div>
+          <p>Fachada com 24 anos de esculturas — talvez o portal mais detalhado da Itália. Imperdível.</p>
+          <a href="https://www.chiesamadrelecce.it/santa-croce/" target="_blank">Saiba mais →</a>
+        </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-time">10:30</div>
-        <div class="timeline-content"><strong>Gallipoli centro histórico</strong>: Castelo Angioino, Catedral di Sant'Agata, Frantoio Ipogeo (antigo moinho de azeite subterrâneo), passeio pela muralha com vista 360°.</div>
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Otranto_BW_2016-10-19_11-08-29.jpg/640px-Otranto_BW_2016-10-19_11-08-29.jpg" alt="Otranto">
+        <div class="poi-info">
+          <h4>Otranto · Castello Aragonese</h4>
+          <div class="poi-meta">45 min de Lecce</div>
+          <p>Cidade fortificada no ponto mais oriental da Itália. Catedral com o famoso mosaico do "Albero della Vita" (1163) e Cripta dos 800 Mártires.</p>
+          <a href="https://www.castelloaragoneseotranto.it/" target="_blank">Castello Aragonese →</a>
+        </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-time">13:00</div>
-        <div class="timeline-content"><strong>Almoço de peixe</strong> em <a href="https://www.lapuritate.it/" target="_blank">La Puritate</a> (icônico, mesa na muralha sobre o mar) ou Posto 6 (mais descolado).</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">15:30</div>
-        <div class="timeline-content"><strong>Praia</strong> — duas opções: <strong>Punta della Suina</strong> (10min ao sul) com lido elegante, ou <strong>Pescoluse — "Maldivas do Salento"</strong> (45min ao sul) com areia farinhenta e água turquesa rasa.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">19:00</div>
-        <div class="timeline-content"><strong>Pôr-do-sol em Santa Maria di Leuca</strong> (se foram a Pescoluse) — ponto mais ao sul do tacão. Subir ao Farol e à Basílica.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">21:30</div>
-        <div class="timeline-content"><strong>Jantar de volta em Lecce</strong> — Alle Due Corti ou Trattoria Nonna Tetti (familiar, fartura).</div>
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Baia_dei_Turchi_-_panoramio.jpg/640px-Baia_dei_Turchi_-_panoramio.jpg" alt="Baia dei Turchi">
+        <div class="poi-info">
+          <h4>Baia dei Turchi</h4>
+          <div class="poi-meta">15 min de Otranto · praia selvagem</div>
+          <p>Areia clara, água tipo Caribe, pinhal protegido. Parking pago + trilha de 10min. Sem lidos — leve o seu.</p>
+          <a href="https://www.google.com/maps/place/Baia+dei+Turchi" target="_blank">Ver no Google Maps →</a>
+        </div>
       </div>
     </div>
+
+    <h3 class="day-section">🍽️ Onde comer</h3>
+    <div class="cards-grid">
+      <div class="resto-card">
+        <h4>Natale Pasticceria (rustico leccese)</h4>
+        <div class="resto-meta">Lecce · € · almoço rápido de pé</div>
+        <p>Compre o icônico <em>rustico leccese</em> (massa folhada com tomate, mussarela e bechamel). Café e pasticciotto também.</p>
+        <a href="https://www.pasticcerianatale.it/" target="_blank">Site oficial →</a>
+      </div>
+      <div class="resto-card">
+        <h4>La Bella Idrusa</h4>
+        <div class="resto-meta">Otranto · €€€ · peixe com vista castelo</div>
+        <p>Jantar à beira mar com o Castello iluminado em frente. Peixe fresco, crudo e pasta com frutos do mar.</p>
+        <a href="https://www.tripadvisor.it/Restaurant_Review-g668318-d2436091-Reviews-La_Bella_Idrusa-Otranto_Province_of_Lecce_Puglia.html" target="_blank">Tripadvisor →</a>
+      </div>
+      <div class="resto-card">
+        <h4>Trattoria Le Zie</h4>
+        <div class="resto-meta">Lecce · €€ · "cucina casereccia"</div>
+        <p>Alternativa para voltar e jantar tarde em Lecce. Cardápio escrito à mão, comida de casa.</p>
+        <a href="https://www.tripadvisor.it/Restaurant_Review-g187886-d1095428-Reviews-Trattoria_Le_Zie_Cucina_Casereccia-Lecce_Province_of_Lecce_Puglia.html" target="_blank">Tripadvisor →</a>
+      </div>
+    </div>
+
+    <details class="timeline-toggle">
+      <summary>Ver agenda detalhada</summary>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-time">09:00</div><div class="timeline-content"><strong>Tour Lecce barroca</strong> — Santa Croce, Anfiteatro Romano, Piazza del Duomo, Museu Faggiano, ateliers de cartapesta na Via Manfredi.</div></div>
+        <div class="timeline-item"><div class="timeline-time">13:00</div><div class="timeline-content"><strong>Almoço rápido</strong> — rustico leccese na Natale Pasticceria.</div></div>
+        <div class="timeline-item"><div class="timeline-time">14:30</div><div class="timeline-content">Drive para <strong>Otranto</strong>.</div></div>
+        <div class="timeline-item"><div class="timeline-time">15:30</div><div class="timeline-content"><strong>Otranto</strong> — Castello, Catedral (mosaico), Cripta dos Mártires.</div></div>
+        <div class="timeline-item"><div class="timeline-time">17:00</div><div class="timeline-content"><strong>Baia dei Turchi</strong>. Banho até o pôr do sol.</div></div>
+        <div class="timeline-item"><div class="timeline-time">20:30</div><div class="timeline-content"><strong>Jantar</strong>: La Bella Idrusa (Otranto) ou Le Zie (Lecce).</div></div>
+      </div>
+    </details>
   </div>
 </div>
 
 <!-- DIA 7 -->
 <div class="day">
   <div class="day-header">
-    <h2>Dia 7 · Domingo 30/08 — Bate-volta para Matera (UNESCO)</h2>
-    <span class="day-tag">Drive · 310 km ida e volta</span>
+    <h2>Dia 7 · Dom 30/08 — Day trip Matera (UNESCO)</h2>
+    <span class="day-tag">310 km ida e volta · NOITE 3/3 (última em Lecce)</span>
   </div>
   <div class="day-body">
-    <div class="day-banner">Domingo dedicado a uma das cidades mais peculiares do mundo. Habitada há 9.000 anos, cenário de "Paixão de Cristo" e do último 007. Vale o drive.</div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-time">08:00</div>
-        <div class="timeline-content"><strong>Saída cedo para Matera</strong> (Basilicata, ~2h). Cidade dos <strong>Sassi</strong> — bairros cavados na rocha, Patrimônio UNESCO.</div>
+    <p class="day-intro">Domingo dedicado a uma das cidades mais peculiares do mundo. Habitada há 9.000 anos, cenário de "A Paixão de Cristo" e do último 007.</p>
+
+    <h3 class="day-section">📍 Atrações do dia</h3>
+    <div class="cards-grid">
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Matera-Sassi-Sunset.jpg/640px-Matera-Sassi-Sunset.jpg" alt="Matera Sassi">
+        <div class="poi-info">
+          <h4>Sassi di Matera</h4>
+          <div class="poi-meta">2h de Lecce · UNESCO</div>
+          <p>Bairros cavados na rocha — Sasso Caveoso e Sasso Barisano. Habitação contínua há 9 mil anos. Reserve tour guiado pelo GetYourGuide.</p>
+          <a href="https://www.getyourguide.com/matera-l1245/" target="_blank">Tours guiados →</a>
+        </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-time">10:30</div>
-        <div class="timeline-content"><strong>Tour guiado dos Sassi</strong>. Reserve antes via <a href="https://www.getyourguide.com/matera-l1245/" target="_blank">GetYourGuide</a> (~€25/pax, 2h, guia em português ou inglês). Visitem Sasso Caveoso, Sasso Barisano, a <strong>Cripta del Peccato Originale</strong> (a "Capela Sistina rupestre", agendar antes).</div>
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Matera_Cripta_del_Peccato_Originale.jpg/640px-Matera_Cripta_del_Peccato_Originale.jpg" alt="Cripta del Peccato Originale">
+        <div class="poi-info">
+          <h4>Cripta del Peccato Originale</h4>
+          <div class="poi-meta">10 min de Matera · agendar antes</div>
+          <p>"A Capela Sistina rupestre" — afrescos do séc. IX numa gruta. Acesso limitado, reserva online obrigatória.</p>
+          <a href="https://www.criptadelpeccatooriginale.it/en/" target="_blank">Site oficial →</a>
+        </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-time">13:30</div>
-        <div class="timeline-content"><strong>Almoço em caverna</strong> — <a href="https://www.lebubbole.com/" target="_blank">Le Bubbole</a> (no Sasso Barisano, ambiente único) ou Trattoria del Caveoso.</div>
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Matera-Sassi-Sunset.jpg/640px-Matera-Sassi-Sunset.jpg" alt="Belvedere Matera">
+        <div class="poi-info">
+          <h4>Belvedere di Murgia Timone</h4>
+          <div class="poi-meta">15 min · vista clássica</div>
+          <p>Mirante do outro lado do barranco (Parco della Murgia) para a vista postal de Matera. Especialmente bonito no fim de tarde.</p>
+          <a href="https://www.google.com/maps/place/Belvedere+Murgia+Timone" target="_blank">Ver no Google Maps →</a>
+        </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-time">16:00</div>
-        <div class="timeline-content"><strong>Mirante Belvedere</strong> do outro lado do barranco (Gravina) para a vista clássica. Chiesa rupestre di Santa Maria de Idris.</div>
+    </div>
+
+    <h3 class="day-section">🍽️ Onde comer</h3>
+    <div class="cards-grid">
+      <div class="resto-card">
+        <h4>Le Bubbole (Palazzo Gattini)</h4>
+        <div class="resto-meta">Matera · €€€ · ambiente caverna</div>
+        <p>Restaurante dentro de um Sasso (caverna habitada). Cozinha lucana refinada, ambiente único no mundo.</p>
+        <a href="https://www.lebubbole.com/" target="_blank">Site oficial →</a>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-time">17:30</div>
-        <div class="timeline-content">Volta para Lecce (~2h).</div>
+      <div class="resto-card">
+        <h4>Trattoria del Caveoso</h4>
+        <div class="resto-meta">Matera · €€ · tradicional lucana</div>
+        <p>Alternativa autêntica e mais acessível. Cavatelli alla materana, peperoni cruschi, queijos locais.</p>
+        <a href="https://www.tripadvisor.it/Restaurant_Review-g187883-d1107834-Reviews-Trattoria_del_Caveoso-Matera_Province_of_Matera_Basilicata.html" target="_blank">Tripadvisor →</a>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-time">21:00</div>
-        <div class="timeline-content"><strong>Jantar leve em Lecce</strong> — pizzaria 400 Gradi ou apenas aperitivo + pucce no Mamma Lupa.</div>
+      <div class="resto-card">
+        <h4>400 Gradi</h4>
+        <div class="resto-meta">Lecce · €€ · pizzaria de noite</div>
+        <p>Última noite em Lecce. Pizza napolitana premiada, ambiente despretensioso. Boa para chegada da estrada.</p>
+        <a href="https://www.400gradi.lecce.it/" target="_blank">Site oficial →</a>
       </div>
+    </div>
+
+    <details class="timeline-toggle">
+      <summary>Ver agenda detalhada</summary>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-time">08:00</div><div class="timeline-content"><strong>Saída cedo para Matera</strong> (~2h).</div></div>
+        <div class="timeline-item"><div class="timeline-time">10:30</div><div class="timeline-content"><strong>Tour guiado dos Sassi</strong>. Visite Sasso Caveoso, Sasso Barisano, Cripta del Peccato Originale.</div></div>
+        <div class="timeline-item"><div class="timeline-time">13:30</div><div class="timeline-content"><strong>Almoço Le Bubbole</strong> ou Trattoria del Caveoso.</div></div>
+        <div class="timeline-item"><div class="timeline-time">16:00</div><div class="timeline-content"><strong>Belvedere</strong> (Gravina) e Chiesa rupestre di Santa Maria de Idris.</div></div>
+        <div class="timeline-item"><div class="timeline-time">17:30</div><div class="timeline-content">Volta para Lecce.</div></div>
+        <div class="timeline-item"><div class="timeline-time">21:00</div><div class="timeline-content"><strong>Última noite em Lecce</strong> — 400 Gradi ou aperitivo + pucce no Mamma Lupa.</div></div>
+      </div>
+    </details>
+
+    <div class="tip-box">
+      <h4>💡 Quer trocar Matera por Gallipoli?</h4>
+      <p>Se preferirem mais Puglia em vez de UNESCO: substituam por <strong>Gallipoli + Pescoluse (Maldivas do Salento) + Santa Maria di Leuca</strong>. Saída 09:30, almoço peixe na La Puritate em Gallipoli, tarde de Maldivas, pôr-do-sol em Leuca.</p>
     </div>
   </div>
 </div>
@@ -769,326 +701,361 @@ footer em { color: #b87333; }
 <!-- DIA 8 -->
 <div class="day">
   <div class="day-header">
-    <h2>Dia 8 · Segunda 31/08 — Volta para Roma</h2>
-    <span class="day-tag">Drive · ~600 km</span>
+    <h2>Dia 8 · Seg 31/08 — Lecce → Trani → Roma</h2>
+    <span class="day-tag">~600 km · NOITE 1/3 em Roma</span>
   </div>
   <div class="day-body">
-    <div class="day-banner">Dia de estrada, mas com parada estratégica em Trani — uma das catedrais românicas mais bonitas da Itália sobre o mar. Chegada em Roma no fim da tarde.</div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-time">08:30</div>
-        <div class="timeline-content">Check-out cedo, partida de Lecce. SS613 → A14 (direção Bari/Pescara).</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">12:30</div>
-        <div class="timeline-content"><strong>Parada estratégica em Trani</strong> (~3h de Lecce). <strong>Catedral românica mais bonita da Puglia</strong> sobre o porto. Almoço no Corteinfiore (peixe, ambiente jardim).</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">15:00</div>
-        <div class="timeline-content">Retomar A14 → A16 → A1 (Roma).</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">19:00</div>
-        <div class="timeline-content"><strong>Chegada em Roma · IMPORTANTE — devolver o carro</strong>. Combinem com a locadora a devolução no Stazione Termini ou direto em Fiumicino (Hertz e Avis têm transfer de volta). Não dirija pelo centro de Roma — ZTL agressiva.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">20:30</div>
-        <div class="timeline-content"><strong>Check-in no hotel Roma</strong>. Banho rápido.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">21:30</div>
-        <div class="timeline-content"><strong>Jantar tranquilo no bairro</strong>. Centro Storico: <a href="https://www.tripadvisor.it/Restaurant_Review-g187791-d1015523-Reviews-Armando_al_Pantheon-Rome_Lazio.html" target="_blank">Armando al Pantheon</a> (3 gerações ao lado do Pantheon). Trastevere: <a href="https://www.daenzoal29.com/" target="_blank">Da Enzo al 29</a>.</div>
+    <p class="day-intro">Dia de estrada com parada estratégica em Trani — uma das catedrais românicas mais bonitas da Itália sobre o mar. Chegada em Roma no fim da tarde.</p>
+
+    <h3 class="day-section">📍 Parada do dia</h3>
+    <div class="cards-grid">
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Trani_BW_2016-10-19_13-39-44.jpg/640px-Trani_BW_2016-10-19_13-39-44.jpg" alt="Trani - Catedral">
+        <div class="poi-info">
+          <h4>Catedral de Trani</h4>
+          <div class="poi-meta">3h de Lecce · meio do caminho</div>
+          <p>A "catedral sobre o mar" — românica do séc. XII em pedra calcária branca. Parada estratégica para almoço e descanso.</p>
+          <a href="https://www.cattedraletrani.it/" target="_blank">Site oficial →</a>
+        </div>
       </div>
     </div>
+
+    <h3 class="day-section">🍽️ Onde comer</h3>
+    <div class="cards-grid">
+      <div class="resto-card">
+        <h4>Corteinfiore</h4>
+        <div class="resto-meta">Trani · €€€ · peixe num jardim</div>
+        <p>Ambiente jardim a poucos passos da catedral. Peixe fresco e crudo refinado. Pausa perfeita no meio do drive.</p>
+        <a href="https://www.corteinfiore.it/" target="_blank">Site oficial →</a>
+      </div>
+      <div class="resto-card">
+        <h4>Armando al Pantheon</h4>
+        <div class="resto-meta">Roma · €€€ · ao lado do Pantheon</div>
+        <p>3 gerações da família Gargioli. Romano clássico — carbonara, cacio e pepe, abbacchio. Reserva.</p>
+        <a href="https://www.armandoalpantheon.it/" target="_blank">Site oficial →</a>
+      </div>
+      <div class="resto-card">
+        <h4>Da Enzo al 29</h4>
+        <div class="resto-meta">Trastevere · €€ · autêntico romano</div>
+        <p>Pequena trattoria familiar. Carbonara, amatriciana e cacio e pepe perfeitas. Vão às 19h ou enfrentem fila.</p>
+        <a href="https://www.daenzoal29.com/" target="_blank">Site oficial →</a>
+      </div>
+    </div>
+
+    <details class="timeline-toggle">
+      <summary>Ver agenda detalhada</summary>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-time">08:30</div><div class="timeline-content">Check-out cedo, partida pela SS613 → A14.</div></div>
+        <div class="timeline-item"><div class="timeline-time">12:30</div><div class="timeline-content"><strong>Parada Trani</strong>. Catedral, almoço Corteinfiore.</div></div>
+        <div class="timeline-item"><div class="timeline-time">15:00</div><div class="timeline-content">Retomar A14 → A16 → A1.</div></div>
+        <div class="timeline-item"><div class="timeline-time">19:00</div><div class="timeline-content"><strong>Chegada em Roma · DEVOLVER O CARRO</strong> em Termini ou FCO. Não dirija no centro — ZTL.</div></div>
+        <div class="timeline-item"><div class="timeline-time">20:30</div><div class="timeline-content"><strong>Check-in hotel Roma</strong>.</div></div>
+        <div class="timeline-item"><div class="timeline-time">21:30</div><div class="timeline-content"><strong>Jantar tranquilo</strong>: Armando al Pantheon ou Da Enzo al 29.</div></div>
+      </div>
+    </details>
   </div>
 </div>
 
 <!-- DIA 9 -->
 <div class="day">
   <div class="day-header">
-    <h2>Dia 9 · Terça 01/09 — Roma Antiga + Centro</h2>
-    <span class="day-tag">Tudo a pé / metrô</span>
+    <h2>Dia 9 · Ter 01/09 — Roma Antiga + Centro</h2>
+    <span class="day-tag">Tudo a pé / metrô · NOITE 2/3</span>
   </div>
   <div class="day-body">
-    <div class="day-banner">O dia mais "turístico clássico" — Coliseu, Fórum, Pantheon, Trevi e Navona. Reservem ingressos para o Coliseu com 2-3 meses de antecedência.</div>
+    <p class="day-intro">O dia mais "turístico clássico" — Coliseu, Fórum, Pantheon, Trevi e Navona. Reservem ingressos para o Coliseu com 2-3 meses de antecedência.</p>
+
     <div class="tip-box">
-      <h4>⚠ Reservas antes de embarcar</h4>
-      <p>Reservem com <strong>2-3 meses de antecedência</strong>: (1) <a href="https://parcocolosseo.it/en/" target="_blank">Coliseu + Fórum + Palatino com acesso à arena</a>; (2) <a href="https://m.tickets.museivaticani.va/" target="_blank">Museus Vaticanos / Capela Sistina</a> (preferencialmente "Early Access" às 7h30 — sem multidão); (3) <a href="https://www.galleriaborghese.it/" target="_blank">Galleria Borghese</a> se quiserem encaixar.</p>
+      <h4>⚠ Reservas obrigatórias antes de embarcar</h4>
+      <p>(1) <a href="https://parcocolosseo.it/en/" target="_blank">Coliseu + Fórum + Palatino</a> (com acesso à arena); (2) <a href="https://m.tickets.museivaticani.va/" target="_blank">Museus Vaticanos / Capela Sistina</a> (preferencialmente "Early Access" 7h30); (3) <a href="https://www.galleriaborghese.it/" target="_blank">Galleria Borghese</a> se quiserem encaixar.</p>
     </div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-time">08:30</div>
-        <div class="timeline-content"><strong>Coliseu</strong> (ingresso reservado, slot manhã cedo).</div>
+
+    <h3 class="day-section">📍 Atrações do dia</h3>
+    <div class="cards-grid">
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/640px-Colosseo_2020.jpg" alt="Coliseu">
+        <div class="poi-info">
+          <h4>Coliseu</h4>
+          <div class="poi-meta">slot manhã cedo · ingresso reservado</div>
+          <p>O anfiteatro mais famoso do mundo. Capacidade original: 50.000. Compre o combo com acesso à arena.</p>
+          <a href="https://parcocolosseo.it/en/" target="_blank">Bilheteria oficial →</a>
+        </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-time">11:00</div>
-        <div class="timeline-content"><strong>Fórum Romano + Palatino</strong> (mesmo ingresso). Via Sacra. Vista da colina Palatino é imperdível.</div>
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Roman_Forum_from_Palatine_Hill.jpg/640px-Roman_Forum_from_Palatine_Hill.jpg" alt="Foro Romano">
+        <div class="poi-info">
+          <h4>Fórum Romano + Palatino</h4>
+          <div class="poi-meta">mesmo ingresso · Via Sacra</div>
+          <p>O coração da Roma antiga. Suba a colina Palatino para a vista mais bonita sobre as ruínas.</p>
+          <a href="https://parcocolosseo.it/en/area/roman-forum/" target="_blank">Saiba mais →</a>
+        </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-time">13:30</div>
-        <div class="timeline-content"><strong>Almoço no bairro Monti</strong> — La Carbonara ou Taverna Romana (cacio e pepe famosa).</div>
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Rome-Pantheon-Exterior.jpg/640px-Rome-Pantheon-Exterior.jpg" alt="Pantheon">
+        <div class="poi-info">
+          <h4>Pantheon</h4>
+          <div class="poi-meta">centro histórico · entrada paga (€5)</div>
+          <p>Cúpula de concreto não armado do séc. II — ainda hoje a maior do mundo no seu tipo. Túmulo de Rafael.</p>
+          <a href="https://www.pantheonroma.com/" target="_blank">Site oficial →</a>
+        </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-time">15:30</div>
-        <div class="timeline-content"><strong>Centro histórico a pé</strong>: Piazza Venezia → Pantheon → Piazza Navona → Campo de' Fiori → Fontana di Trevi → Spagna. Lance moeda em Trevi sobre o ombro esquerdo (volta-se a Roma).</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">18:30</div>
-        <div class="timeline-content"><strong>Aperitivo com vista</strong> — <a href="https://www.terrazzaborromini.com/" target="_blank">Terrazza Borromini</a> (rooftop sobre Piazza Navona, reserva obrigatória).</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">20:30</div>
-        <div class="timeline-content"><strong>Jantar romano clássico — <a href="https://www.feliceatestaccio.it/" target="_blank">Felice a Testaccio</a></strong> (a cacio e pepe definitiva). Alternativas: Salumeria Roscioli (foodies, ~€80/pax) ou Pierluigi (peixe sofisticado).</div>
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Fontana_di_Trevi_2015.jpg/640px-Fontana_di_Trevi_2015.jpg" alt="Fontana di Trevi">
+        <div class="poi-info">
+          <h4>Fontana di Trevi & Piazza Navona</h4>
+          <div class="poi-meta">caminhada · grátis</div>
+          <p>Lance moeda em Trevi sobre o ombro esquerdo (volta-se a Roma). Navona com 3 fontes de Bernini.</p>
+          <a href="https://www.google.com/maps/place/Fontana+di+Trevi" target="_blank">Ver no Google Maps →</a>
+        </div>
       </div>
     </div>
+
+    <h3 class="day-section">🍽️ Onde comer</h3>
+    <div class="cards-grid">
+      <div class="resto-card">
+        <h4>La Carbonara (Monti)</h4>
+        <div class="resto-meta">Roma · €€ · clássico romano</div>
+        <p>Carbonara, amatriciana e cacio e pepe num bairro charmoso e menos turístico. Para almoço perto do Coliseu.</p>
+        <a href="https://www.lacarbonara.it/" target="_blank">Site oficial →</a>
+      </div>
+      <div class="resto-card">
+        <h4>Terrazza Borromini (aperitivo)</h4>
+        <div class="resto-meta">Roma · €€€€ · rooftop · reserva obrigatória</div>
+        <p>Rooftop sobre Piazza Navona com vista para a Sant'Agnese de Borromini. Coquetel ao pôr do sol é mágico.</p>
+        <a href="https://www.terrazzaborromini.com/" target="_blank">Site oficial →</a>
+      </div>
+      <div class="resto-card">
+        <h4>Felice a Testaccio</h4>
+        <div class="resto-meta">Roma · €€€ · jantar tradicional</div>
+        <p>A cacio e pepe definitiva, esmagada na sua frente. Templo do clássico romano. Reserva obrigatória.</p>
+        <a href="https://www.feliceatestaccio.it/" target="_blank">Site oficial →</a>
+      </div>
+      <div class="resto-card">
+        <h4>Salumeria Roscioli</h4>
+        <div class="resto-meta">Roma · €€€ · alternativa foodie</div>
+        <p>Carbonara entre as melhores de Roma. Carta de vinhos extraordinária. Reserva.</p>
+        <a href="https://www.salumeriaroscioli.com/restaurant/" target="_blank">Site oficial →</a>
+      </div>
+    </div>
+
+    <details class="timeline-toggle">
+      <summary>Ver agenda detalhada</summary>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-time">08:30</div><div class="timeline-content"><strong>Coliseu</strong> — slot manhã cedo.</div></div>
+        <div class="timeline-item"><div class="timeline-time">11:00</div><div class="timeline-content"><strong>Fórum Romano + Palatino</strong>. Vista da colina Palatino é imperdível.</div></div>
+        <div class="timeline-item"><div class="timeline-time">13:30</div><div class="timeline-content"><strong>Almoço Monti</strong> — La Carbonara.</div></div>
+        <div class="timeline-item"><div class="timeline-time">15:30</div><div class="timeline-content"><strong>Centro a pé</strong>: Pantheon → Navona → Campo de' Fiori → Trevi → Spagna.</div></div>
+        <div class="timeline-item"><div class="timeline-time">18:30</div><div class="timeline-content"><strong>Aperitivo Terrazza Borromini</strong>.</div></div>
+        <div class="timeline-item"><div class="timeline-time">20:30</div><div class="timeline-content"><strong>Jantar Felice a Testaccio</strong>.</div></div>
+      </div>
+    </details>
   </div>
 </div>
 
 <!-- DIA 10 -->
 <div class="day">
   <div class="day-header">
-    <h2>Dia 10 · Quarta 02/09 — Vaticano + Trastevere</h2>
-    <span class="day-tag">Manhã Vaticano · Tarde Trastevere</span>
+    <h2>Dia 10 · Qua 02/09 — Vaticano + Trastevere</h2>
+    <span class="day-tag">Vaticano + Trastevere · NOITE 3/3 (última)</span>
   </div>
   <div class="day-body">
-    <div class="day-banner">Manhã no menor país do mundo, tarde no bairro mais boêmio de Roma. Pôr-do-sol no Gianicolo é obrigatório.</div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-time">07:30</div>
-        <div class="timeline-content"><strong>Museus Vaticanos (Early Entry)</strong> — se conseguiram reserva às 7h30, têm 1h30 quase sozinhos antes da abertura geral. Vale ouro.</div>
+    <p class="day-intro">Manhã no menor país do mundo, tarde no bairro mais boêmio de Roma. Pôr-do-sol no Gianicolo é obrigatório.</p>
+
+    <h3 class="day-section">📍 Atrações do dia</h3>
+    <div class="cards-grid">
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Saint_Peter%27s_Square%2C_Vatican_City_-_April_2007.jpg/640px-Saint_Peter%27s_Square%2C_Vatican_City_-_April_2007.jpg" alt="Vaticano - Praça São Pedro">
+        <div class="poi-info">
+          <h4>Museus Vaticanos + Capela Sistina</h4>
+          <div class="poi-meta">Early Access 7h30 · reserva</div>
+          <p>Se conseguirem reserva 7h30, têm 1h30 quase sozinhos antes da abertura geral. Capela Sistina sem foto, silêncio.</p>
+          <a href="https://m.tickets.museivaticani.va/" target="_blank">Reservar →</a>
+        </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-time">10:30</div>
-        <div class="timeline-content"><strong>Capela Sistina</strong> (silêncio absoluto, sem foto). Saída para <strong>Basílica de São Pedro</strong> (gratuita, pode haver fila).</div>
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Saint_Peter%27s_Square%2C_Vatican_City_-_April_2007.jpg/640px-Saint_Peter%27s_Square%2C_Vatican_City_-_April_2007.jpg" alt="Basílica São Pedro">
+        <div class="poi-info">
+          <h4>Basílica de São Pedro</h4>
+          <div class="poi-meta">gratuita · pode ter fila</div>
+          <p>A maior igreja do mundo. Pietà de Michelangelo (1499), Baldachino de Bernini. Suba à cúpula (€10) para a vista.</p>
+          <a href="https://www.vatican.va/various/basiliche/san_pietro/index_it.htm" target="_blank">Site oficial →</a>
+        </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-time">13:00</div>
-        <div class="timeline-content"><strong>Almoço no bairro Prati</strong> — <a href="https://www.pizzarium.it/" target="_blank">Pizzarium</a> de Bonci (lendária pizza al taglio) ou Settembrini (cucina moderna refinada).</div>
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Castel_Sant%27Angelo_2015.jpg/640px-Castel_Sant%27Angelo_2015.jpg" alt="Castel Sant'Angelo">
+        <div class="poi-info">
+          <h4>Castel Sant'Angelo</h4>
+          <div class="poi-meta">antigo mausoléu de Adriano</div>
+          <p>Travessem a Ponte Sant'Angelo com as esculturas de Bernini. Subam à cobertura para a vista do Tibre.</p>
+          <a href="https://castelsantangelo.cultura.gov.it/" target="_blank">Site oficial →</a>
+        </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-time">15:30</div>
-        <div class="timeline-content"><strong>Castel Sant'Angelo</strong> — antigo mausoléu de Adriano, depois fortaleza papal. Travessem a Ponte Sant'Angelo com as esculturas de Bernini.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">17:00</div>
-        <div class="timeline-content"><strong>Trastevere ao entardecer</strong> — atravessem o Tibre pela Ponte Sisto. Caminhem pelas vielas, Santa Maria in Trastevere (mosaicos do séc. XII), Piazza Trilussa. Subir ao <strong>Gianicolo</strong> ao pôr-do-sol — vista do skyline romano (15-20min de caminhada).</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">20:30</div>
-        <div class="timeline-content"><strong>Jantar de despedida em Trastevere</strong>: Antica Pesa (sofisticado, jardim), La Tavernaccia (tradicional familiar) ou Da Enzo al 29 (autêntico, fila — vão cedo às 19h).</div>
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Trastevere_Roma.jpg/640px-Trastevere_Roma.jpg" alt="Trastevere">
+        <div class="poi-info">
+          <h4>Trastevere + Gianicolo</h4>
+          <div class="poi-meta">entardecer + pôr-do-sol</div>
+          <p>Atravesse pela Ponte Sisto. Santa Maria in Trastevere (mosaicos séc. XII), Piazza Trilussa. Suba ao Gianicolo (15-20min) para a vista do skyline.</p>
+          <a href="https://www.google.com/maps/place/Trastevere,+Roma" target="_blank">Ver no Google Maps →</a>
+        </div>
       </div>
     </div>
+
+    <h3 class="day-section">🍽️ Onde comer</h3>
+    <div class="cards-grid">
+      <div class="resto-card">
+        <h4>Pizzarium (Bonci)</h4>
+        <div class="resto-meta">Prati · € · almoço de pé</div>
+        <p>Pizza al taglio lendária de Gabriele Bonci. Massa de longa fermentação, coberturas criativas. Imperdível depois do Vaticano.</p>
+        <a href="https://www.pizzarium.it/" target="_blank">Site oficial →</a>
+      </div>
+      <div class="resto-card">
+        <h4>Settembrini (cozinha moderna)</h4>
+        <div class="resto-meta">Prati · €€€ · alternativa refinada</div>
+        <p>Cucina moderna num bairro elegante. Boa para almoço sentado depois do Vaticano. Reserva.</p>
+        <a href="https://www.viasettembrini.com/" target="_blank">Site oficial →</a>
+      </div>
+      <div class="resto-card">
+        <h4>Antica Pesa</h4>
+        <div class="resto-meta">Trastevere · €€€€ · jantar sofisticado</div>
+        <p>Restaurante em casarão do séc. XVII com jardim interno. Cozinha romana refinada, ambiente romântico.</p>
+        <a href="https://www.anticapesa.it/" target="_blank">Site oficial →</a>
+      </div>
+      <div class="resto-card">
+        <h4>La Tavernaccia</h4>
+        <div class="resto-meta">Trastevere · €€ · familiar tradicional</div>
+        <p>Cucina romana de casa, especialidade em assados (porchetta, abbacchio). Alternativa autêntica e farta.</p>
+        <a href="https://www.latavernacciadabruno.com/" target="_blank">Site oficial →</a>
+      </div>
+    </div>
+
+    <details class="timeline-toggle">
+      <summary>Ver agenda detalhada</summary>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-time">07:30</div><div class="timeline-content"><strong>Museus Vaticanos (Early Entry)</strong>.</div></div>
+        <div class="timeline-item"><div class="timeline-time">10:30</div><div class="timeline-content"><strong>Capela Sistina</strong> → <strong>Basílica de São Pedro</strong>.</div></div>
+        <div class="timeline-item"><div class="timeline-time">13:00</div><div class="timeline-content"><strong>Almoço Prati</strong> — Pizzarium ou Settembrini.</div></div>
+        <div class="timeline-item"><div class="timeline-time">15:30</div><div class="timeline-content"><strong>Castel Sant'Angelo</strong>.</div></div>
+        <div class="timeline-item"><div class="timeline-time">17:00</div><div class="timeline-content"><strong>Trastevere ao entardecer</strong>. Subida ao <strong>Gianicolo</strong> ao pôr-do-sol.</div></div>
+        <div class="timeline-item"><div class="timeline-time">20:30</div><div class="timeline-content"><strong>Jantar despedida</strong>: Antica Pesa ou La Tavernaccia.</div></div>
+      </div>
+    </details>
   </div>
 </div>
 
 <!-- DIA 11 -->
 <div class="day">
   <div class="day-header">
-    <h2>Dia 11 · Quinta 03/09 — Despedida</h2>
-    <span class="day-tag">Voo 13:05 · saída do hotel ~9h00</span>
+    <h2>Dia 11 · Qui 03/09 — Despedida</h2>
+    <span class="day-tag">LATAM 8121 · 13:05 FCO → GRU</span>
   </div>
   <div class="day-body">
-    <div class="day-banner">Última manhã para um café perfeito e uma volta ao Pantheon vazio antes do trânsito acordar. Depois transfer para FCO e voo de volta.</div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-time">07:30</div>
-        <div class="timeline-content"><strong>Café da manhã reforçado no hotel</strong>. Última caminhada — sugestão: Pantheon vazio às 8h (gratuito), café em <strong>Sant'Eustachio Il Caffè</strong> (o melhor expresso de Roma).</div>
+    <p class="day-intro">Última manhã para um café perfeito e uma volta ao Pantheon vazio antes do trânsito acordar. Depois transfer para FCO e voo de volta.</p>
+
+    <h3 class="day-section">📍 Última parada</h3>
+    <div class="cards-grid">
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Rome-Pantheon-Exterior.jpg/640px-Rome-Pantheon-Exterior.jpg" alt="Pantheon">
+        <div class="poi-info">
+          <h4>Pantheon ao amanhecer</h4>
+          <div class="poi-meta">8h · vazio</div>
+          <p>O Pantheon às 8h da manhã é uma experiência completamente diferente — quase ninguém, luz dourada pelo óculo.</p>
+          <a href="https://www.pantheonroma.com/" target="_blank">Site oficial →</a>
+        </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-time">09:00</div>
-        <div class="timeline-content"><strong>Check-out</strong>. Transfer para FCO (40-50min). Opções: <strong>Taxi oficial</strong> (€55 fixo do centro histórico), <strong>Leonardo Express</strong> (trem direto Termini→FCO, €14/pax, 32min) ou <strong>transfer privado</strong> via hotel (~€70-90).</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">10:30</div>
-        <div class="timeline-content"><strong>Chegada em FCO</strong>. Check-in LATAM (terminal T3), inspeção, sala VIP — vocês têm direito à Plaza Premium Lounge com a tarifa Premium Business (confirmar com LATAM no embarque).</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">13:05</div>
-        <div class="timeline-content"><strong>LATAM 8121 partindo</strong>. Pouso em GRU às 20:05 do mesmo dia. ✈️</div>
+      <div class="poi-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Sant%27Eustachio_Il_Caffe.jpg/640px-Sant%27Eustachio_Il_Caffe.jpg" alt="Sant'Eustachio Il Caffè">
+        <div class="poi-info">
+          <h4>Sant'Eustachio Il Caffè</h4>
+          <div class="poi-meta">1 min do Pantheon</div>
+          <p>O melhor expresso de Roma desde 1938. O Gran Caffè é cremoso por baixo, espuma natural por cima. Ritual de despedida.</p>
+          <a href="https://santeustachioilcaffe.com/" target="_blank">Site oficial →</a>
+        </div>
       </div>
     </div>
+
+    <details class="timeline-toggle">
+      <summary>Ver agenda detalhada</summary>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-time">07:30</div><div class="timeline-content"><strong>Café reforçado no hotel</strong>. Caminhada — Pantheon vazio, café em Sant'Eustachio.</div></div>
+        <div class="timeline-item"><div class="timeline-time">09:00</div><div class="timeline-content"><strong>Check-out</strong>. Transfer FCO (taxi €55, Leonardo Express €14/pax, transfer privado €70-90).</div></div>
+        <div class="timeline-item"><div class="timeline-time">10:30</div><div class="timeline-content"><strong>Chegada FCO</strong> · check-in LATAM (T3) · Plaza Premium Lounge (Premium Business).</div></div>
+        <div class="timeline-item"><div class="timeline-time">13:05</div><div class="timeline-content"><strong>LATAM 8121 decola</strong>. Pouso em GRU às 20:05. ✈️</div></div>
+      </div>
+    </details>
   </div>
 </div>
 
-<h2 class="section-title">Hotéis recomendados</h2>
+<h2 class="section-title">Hotéis</h2>
 
-<h3 class="subsection-title">Hotel 1 · Puglia base 1 (3 noites · 24 → 27/08)</h3>
-<p>Recomendo a região entre <strong>Monopoli, Polignano a Mare e Savelletri</strong> — beira-mar, próximo de Alberobello e Ostuni, restaurantes excelentes ao redor. Faixa: €280-450/noite o quarto duplo.</p>
+<h3 style="color:var(--primary-dark);font-size:1.2em;margin:24px 0 14px;font-weight:500">Monopoli · 4 noites · 24-28/08</h3>
 
 <div class="hotel-card">
-  <h4>★ Don Ferrante Dimore di Charme — Monopoli (RECOMENDADO)</h4>
-  <div class="price">A partir de €320/noite (duplo) · Boutique 5★ refinado</div>
-  <div class="tags"><span class="tag">Vista mar penhasco</span><span class="tag">Pequeno (15 quartos)</span><span class="tag">Restaurante próprio</span><span class="tag">Spa</span></div>
-  <p>Hotel intimista construído dentro das antigas muralhas de Monopoli, sobre o mar. Quartos sofisticados, varandas para o Adriático, café da manhã servido sob arcadas. Restaurante próprio é um dos melhores da região. 2 min do centro histórico a pé.</p>
-  <a class="btn" href="https://www.booking.com/hotel/it/don-ferrante.pt-br.html" target="_blank">Reservar no Booking</a>
+  <h4>★ Don Ferrante Dimore di Charme (RECOMENDADO)</h4>
+  <div class="price">A partir de €320/noite (duplo) · Boutique 5★</div>
+  <div class="tags"><span class="tag">Vista mar penhasco</span><span class="tag">15 quartos</span><span class="tag">Restaurante próprio</span><span class="tag">Spa</span></div>
+  <p>Hotel intimista construído dentro das antigas muralhas de Monopoli, sobre o mar. Varandas para o Adriático, café da manhã sob arcadas. 2 min do centro histórico a pé.</p>
+  <a class="btn" href="https://www.booking.com/hotel/it/don-ferrante.pt-br.html" target="_blank">Booking</a>
   <a class="btn alt" href="https://www.donferrante.it/" target="_blank">Site oficial</a>
 </div>
 
 <div class="hotel-card">
   <h4>★ Masseria Il Frantoio — Ostuni (campo)</h4>
-  <div class="price">A partir de €280/noite (duplo) · Masseria autêntica</div>
-  <div class="tags"><span class="tag">Charme rural</span><span class="tag">Olival próprio</span><span class="tag">Jantar 8 tempos lendário</span><span class="tag">Piscina</span></div>
-  <p>Casarão-fazenda do séc. XVI restaurado mantendo a alma rural. Quartos elegantes mas despojados, olival imenso ao redor, produzem o próprio azeite e geléias. <strong>O jantar de 8 tempos (€85/pax) é uma das experiências gastronômicas mais memoráveis da Itália</strong> — imperdível mesmo se ficarem em outro hotel.</p>
-  <a class="btn" href="https://www.booking.com/hotel/it/masseria-il-frantoio.pt-br.html" target="_blank">Reservar no Booking</a>
+  <div class="price">A partir de €280/noite · Masseria autêntica</div>
+  <div class="tags"><span class="tag">Charme rural</span><span class="tag">Olival próprio</span><span class="tag">Jantar 8 tempos</span><span class="tag">Piscina</span></div>
+  <p>Casarão-fazenda do séc. XVI restaurado. Mesmo se não se hospedarem, o jantar de 8 tempos (€85/pax) é imperdível.</p>
+  <a class="btn" href="https://www.booking.com/hotel/it/masseria-il-frantoio.pt-br.html" target="_blank">Booking</a>
   <a class="btn alt" href="https://www.masseriailfrantoio.it/" target="_blank">Site oficial</a>
 </div>
 
 <div class="hotel-card">
   <h4>★ Masseria Torre Coccaro — Savelletri</h4>
-  <div class="price">A partir de €400/noite (duplo) · Luxo discreto</div>
-  <div class="tags"><span class="tag">Praia privada</span><span class="tag">Spa em caverna</span><span class="tag">Campo de golfe</span><span class="tag">Relais & Châteaux</span></div>
-  <p>A masseria icônica da Puglia, parte do Relais & Châteaux. Praia privada com lido elegante, spa em grutas naturais, campo de golfe 18 buracos ao lado. Atmosfera de villa toscana com sotaque pugliese.</p>
-  <a class="btn" href="https://www.booking.com/hotel/it/masseria-torre-coccaro.pt-br.html" target="_blank">Reservar no Booking</a>
+  <div class="price">A partir de €400/noite · Luxo discreto</div>
+  <div class="tags"><span class="tag">Praia privada</span><span class="tag">Spa em caverna</span><span class="tag">Golfe</span><span class="tag">Relais & Châteaux</span></div>
+  <p>A masseria icônica da Puglia. Praia privada com lido elegante, spa em grutas naturais, campo de golfe 18 buracos.</p>
+  <a class="btn" href="https://www.booking.com/hotel/it/masseria-torre-coccaro.pt-br.html" target="_blank">Booking</a>
   <a class="btn alt" href="https://www.masseriatorrecoccaro.com/" target="_blank">Site oficial</a>
 </div>
 
-<h3 class="subsection-title">Hotel 2 · Puglia base 2 (4 noites · 27 → 31/08)</h3>
-<p>Em <strong>Lecce</strong>, o ideal é ficar dentro do centro histórico para aproveitar o pulsar da cidade. Faixa: €230-380/noite.</p>
+<h3 style="color:var(--primary-dark);font-size:1.2em;margin:24px 0 14px;font-weight:500">Lecce · 3 noites · 28-31/08</h3>
 
-<div class="hotel-card">
-  <h4>★ Mantatelurè Dimora Esclusiva — Lecce (RECOMENDADO)</h4>
-  <div class="price">A partir de €290/noite (duplo) · Boutique no centro</div>
-  <div class="tags"><span class="tag">Palácio histórico</span><span class="tag">3 min Santa Croce</span><span class="tag">Pequeno (15 quartos)</span><span class="tag">Spa</span></div>
-  <p>Palacete do séc. XVIII transformado em hotel boutique no coração de Lecce. Cada quarto único, design contemporâneo respeitando a alma barroca. Pátio interno para café da manhã, spa pequeno mas charmoso. Localização privilegiada para explorar a cidade a pé.</p>
-  <a class="btn" href="https://www.booking.com/hotel/it/mantatelure-dimora-esclusiva.pt-br.html" target="_blank">Reservar no Booking</a>
-  <a class="btn alt" href="https://www.mantatelure.it/" target="_blank">Site oficial</a>
+<div class="hotel-card confirmed">
+  <div class="confirmed-badge">✓ HOTEL CONFIRMADO</div>
+  <h4>★ Risorgimento Resort — Lecce</h4>
+  <div class="price">Boutique 5★ no coração do centro histórico</div>
+  <div class="tags"><span class="tag">Centro histórico</span><span class="tag">Pedra leccese</span><span class="tag">Rooftop 360°</span><span class="tag">Garagem própria</span></div>
+  <p>Via Augusto Imperatore 19, a um passo da Piazza Sant'Oronzo e do anfiteatro romano. Edifício histórico restaurado em pedra leccese. Restaurante "Le Quattro Spezierie" no rooftop com vista 360°. Garagem essencial em Lecce (ZTL ativa).</p>
+  <a class="btn" href="https://www.booking.com/hotel/it/risorgimento-resort.pt-br.html" target="_blank">Booking</a>
+  <a class="btn alt" href="https://www.risorgimentoresort.it/" target="_blank">Site oficial</a>
 </div>
 
-<div class="hotel-card">
-  <h4>★ Patria Palace Hotel — Lecce</h4>
-  <div class="price">A partir de €240/noite (duplo) · Clássico elegante</div>
-  <div class="tags"><span class="tag">Frente Santa Croce</span><span class="tag">Rooftop com vista</span><span class="tag">68 quartos</span></div>
-  <p>O grande hotel histórico de Lecce — palacete restaurado com fachada barroca de frente para a Basílica de Santa Croce. Quartos clássicos italianos, rooftop bar com vista privilegiada da cidade. Para quem prefere hotel maior com serviço completo.</p>
-  <a class="btn" href="https://www.booking.com/hotel/it/patriapalace.pt-br.html" target="_blank">Reservar no Booking</a>
-  <a class="btn alt" href="https://www.patriapalace.com/" target="_blank">Site oficial</a>
-</div>
-
-<div class="hotel-card">
-  <h4>★ La Fiermontina Urban Resort — Lecce</h4>
-  <div class="price">A partir de €380/noite (duplo) · Design hotel arty</div>
-  <div class="tags"><span class="tag">Coleção de arte moderna</span><span class="tag">Jardim secreto</span><span class="tag">Piscina externa</span></div>
-  <p>Conjunto de quatro palacetes históricos unidos por jardins, com importante coleção de arte mediterrânea contemporânea. Atmosfera relais & châteaux, piscina em meio às oliveiras seculares no centro da cidade — uma raridade.</p>
-  <a class="btn" href="https://www.booking.com/hotel/it/la-fiermontina-urban-resort.pt-br.html" target="_blank">Reservar no Booking</a>
-  <a class="btn alt" href="https://www.lafiermontina.com/" target="_blank">Site oficial</a>
-</div>
-
-<h3 class="subsection-title">Hotel 3 · Roma (3 noites · 31/08 → 03/09)</h3>
-<p>Em Roma, o ideal é ficar dentro do <strong>Centro Storico</strong> — Pantheon, Piazza Navona, Spagna ou Trastevere. Faixa: €300-500/noite.</p>
+<h3 style="color:var(--primary-dark);font-size:1.2em;margin:24px 0 14px;font-weight:500">Roma · 3 noites · 31/08-03/09</h3>
 
 <div class="hotel-card">
   <h4>★ Hotel Locarno — Piazza del Popolo (RECOMENDADO)</h4>
-  <div class="price">A partir de €350/noite (duplo) · Histórico boutique</div>
+  <div class="price">A partir de €350/noite · Histórico boutique</div>
   <div class="tags"><span class="tag">Liberty/Art Déco</span><span class="tag">Pátio com jardim</span><span class="tag">Bar lendário</span><span class="tag">100 anos</span></div>
-  <p>Hotel histórico de 1925 perto da Piazza del Popolo, frequentado por escritores e cineastas. Atmosfera nostálgica com lareira no lobby, pátio com fonte, terraço para café da manhã. A 5 min da Spagna e Villa Borghese.</p>
-  <a class="btn" href="https://www.booking.com/hotel/it/locarno.pt-br.html" target="_blank">Reservar no Booking</a>
+  <p>Hotel histórico de 1925 perto da Piazza del Popolo, frequentado por escritores e cineastas. Atmosfera nostálgica com lareira, pátio com fonte. 5 min da Spagna e Villa Borghese.</p>
+  <a class="btn" href="https://www.booking.com/hotel/it/locarno.pt-br.html" target="_blank">Booking</a>
   <a class="btn alt" href="https://www.hotellocarno.com/" target="_blank">Site oficial</a>
 </div>
 
 <div class="hotel-card">
-  <h4>★ Singer Palace Hotel — Trevi/Pantheon</h4>
-  <div class="price">A partir de €400/noite (duplo) · Rooftop dos sonhos</div>
-  <div class="tags"><span class="tag">Rooftop 360°</span><span class="tag">3 min Fontana di Trevi</span><span class="tag">Pequeno (30 quartos)</span></div>
-  <p>Boutique de luxo num palácio do séc. XIX a 200m da Fontana di Trevi. Quartos elegantíssimos. O destaque é o <strong>terraço com vista panorâmica de Roma</strong> — perfeito para o aperitivo. Restaurante na cobertura.</p>
-  <a class="btn" href="https://www.booking.com/hotel/it/singer-palace.pt-br.html" target="_blank">Reservar no Booking</a>
+  <h4>★ Singer Palace Hotel — Trevi</h4>
+  <div class="price">A partir de €400/noite · Rooftop dos sonhos</div>
+  <div class="tags"><span class="tag">Rooftop 360°</span><span class="tag">3 min Fontana di Trevi</span><span class="tag">30 quartos</span></div>
+  <p>Boutique de luxo num palácio do séc. XIX a 200m da Fontana di Trevi. O destaque é o terraço com vista panorâmica.</p>
+  <a class="btn" href="https://www.booking.com/hotel/it/singer-palace.pt-br.html" target="_blank">Booking</a>
   <a class="btn alt" href="https://www.singerpalacehotel.com/" target="_blank">Site oficial</a>
 </div>
 
 <div class="hotel-card">
   <h4>★ Hotel Vilòn — Via dell'Arancio</h4>
-  <div class="price">A partir de €500/noite (duplo) · Escondido & magnífico</div>
-  <div class="tags"><span class="tag">Palazzo Borghese</span><span class="tag">Pátio secreto</span><span class="tag">Restaurante Adelaide</span><span class="tag">Pequeno (18 quartos)</span></div>
-  <p>Joia escondida ao lado do Palazzo Borghese. Acesso por porta discreta, atmosfera de casa particular aristocrática. Restaurante Adelaide (excelente). Para quem quer um endereço que poucos conhecem.</p>
-  <a class="btn" href="https://www.booking.com/hotel/it/vilon.pt-br.html" target="_blank">Reservar no Booking</a>
+  <div class="price">A partir de €500/noite · Escondido & magnífico</div>
+  <div class="tags"><span class="tag">Palazzo Borghese</span><span class="tag">Pátio secreto</span><span class="tag">Restaurante Adelaide</span></div>
+  <p>Joia escondida ao lado do Palazzo Borghese. Atmosfera de casa particular aristocrática. Restaurante Adelaide (excelente).</p>
+  <a class="btn" href="https://www.booking.com/hotel/it/vilon.pt-br.html" target="_blank">Booking</a>
   <a class="btn alt" href="https://www.hotelvilon.com/" target="_blank">Site oficial</a>
-</div>
-
-<h2 class="section-title">Restaurantes — guia rápido</h2>
-<div class="restaurant-grid">
-
-  <div class="restaurant">
-    <h4>Grotta Palazzese</h4>
-    <div class="meta">Polignano a Mare · €€€€ · Reserva 2-3 meses</div>
-    <p>Restaurante dentro de uma gruta sobre o mar, único no mundo. Mais pela experiência que pela cozinha (boa, não excepcional).</p>
-    <a href="https://www.grottapalazzese.it/en/" target="_blank">Site oficial →</a>
-  </div>
-
-  <div class="restaurant">
-    <h4>Don Ferrante</h4>
-    <div class="meta">Monopoli · €€€€ · Reserva</div>
-    <p>Fine dining no penhasco, dentro do hotel homônimo. Cozinha mediterrânea contemporânea, vista de tirar fôlego.</p>
-    <a href="https://www.donferrante.it/restaurant" target="_blank">Site oficial →</a>
-  </div>
-
-  <div class="restaurant">
-    <h4>Masseria Il Frantoio</h4>
-    <div class="meta">Ostuni · €€€ · Reserva imprescindível</div>
-    <p>Jantar de 8 tempos com pratos da família Balestrazzi. Uma das melhores experiências da Puglia, mesmo sem se hospedar.</p>
-    <a href="https://www.masseriailfrantoio.it/ristorante" target="_blank">Site oficial →</a>
-  </div>
-
-  <div class="restaurant">
-    <h4>Cielo (La Sommità)</h4>
-    <div class="meta">Ostuni · €€€€ · 1 estrela Michelin</div>
-    <p>Estrelado dentro da cidade branca, terraço com vista para o vale dos oliveiros e o mar Adriático.</p>
-    <a href="https://www.cieloristorantebistrot.it/" target="_blank">Site oficial →</a>
-  </div>
-
-  <div class="restaurant">
-    <h4>Bros'</h4>
-    <div class="meta">Lecce · €€€€ · 1 estrela Michelin</div>
-    <p>Chef Floriano Pellegrino. Experiência teatral, polarizadora, vanguardista. Não é para quem busca clássico — vão pela ousadia.</p>
-    <a href="https://www.brosrestaurant.it/en/" target="_blank">Site oficial →</a>
-  </div>
-
-  <div class="restaurant">
-    <h4>Alle Due Corti</h4>
-    <div class="meta">Lecce · €€ · Tradicional</div>
-    <p>Cucina povera salentina autêntica — ciceri e tria, sagne 'ncannulate, polpette de pão. Sem firulas, alma da Puglia.</p>
-    <a href="https://www.alleduecorti.com/" target="_blank">Site oficial →</a>
-  </div>
-
-  <div class="restaurant">
-    <h4>La Puritate</h4>
-    <div class="meta">Gallipoli · €€€ · Frutos do mar</div>
-    <p>Mesas sobre a muralha velha. Crudo de gambero rosso e ricci di mare. Ambiente perfeito ao pôr-do-sol.</p>
-    <a href="https://www.lapuritate.it/" target="_blank">Site oficial →</a>
-  </div>
-
-  <div class="restaurant">
-    <h4>Le Bubbole</h4>
-    <div class="meta">Matera · €€€ · Ambiente caverna</div>
-    <p>Restaurante dentro de um Sasso (caverna habitada). Cozinha lucana refinada.</p>
-    <a href="https://www.lebubbole.com/" target="_blank">Site oficial →</a>
-  </div>
-
-  <div class="restaurant">
-    <h4>Felice a Testaccio</h4>
-    <div class="meta">Roma · €€€ · Romano tradicional</div>
-    <p>A cacio e pepe definitiva (massa servida e misturada na mesa). Reserve com antecedência, sempre cheio.</p>
-    <a href="https://www.feliceatestaccio.it/" target="_blank">Site oficial →</a>
-  </div>
-
-  <div class="restaurant">
-    <h4>Salumeria Roscioli</h4>
-    <div class="meta">Roma · €€€ · Templo gastronômico</div>
-    <p>Salumeria centenária com restaurante atrás. Carbonara entre as melhores de Roma. Carta de vinhos extraordinária.</p>
-    <a href="https://www.salumeriaroscioli.com/restaurant/" target="_blank">Site oficial →</a>
-  </div>
-
-  <div class="restaurant">
-    <h4>Pierluigi</h4>
-    <div class="meta">Roma · €€€€ · Peixe sofisticado</div>
-    <p>Numa piazzetta sob luminárias, sem trânsito. Peixe excepcional, serviço impecável, ambiente para a foto de despedida.</p>
-    <a href="https://www.pierluigi.it/" target="_blank">Site oficial →</a>
-  </div>
-
-  <div class="restaurant">
-    <h4>Da Enzo al 29</h4>
-    <div class="meta">Roma (Trastevere) · €€ · Autêntico</div>
-    <p>Pequena trattoria familiar, sem cerimônia. Carbonara, amatriciana e cacio e pepe perfeitas. Vão às 19h ou enfrentem fila.</p>
-    <a href="https://www.daenzoal29.com/" target="_blank">Site oficial →</a>
-  </div>
-
 </div>
 
 <h2 class="section-title">Checklist & dicas práticas</h2>
@@ -1096,56 +1063,88 @@ footer em { color: #b87333; }
 <div class="checklist">
   <h3>Antes de viajar</h3>
   <ul>
-    <li>Renove os passaportes — validade mínima de 6 meses após a data do retorno (até março/2027)</li>
-    <li>Tire a <strong>PID — Permissão Internacional para Dirigir</strong>. Obrigatória para alugar carro na Itália. Tira-se no Detran do RS, R$ 270 cada, válida 3 anos</li>
-    <li>Reserve com antecedência (3-6 meses): hotéis (alta temporada na Puglia), restaurantes estrelados, Coliseu, Vaticano, Galleria Borghese</li>
-    <li>Contrate seguro viagem com cobertura mínima de €60.000 (exigência Schengen)</li>
-    <li>Compre <strong>eSIM Italia</strong> (Holafly, Airalo, Saily) — €25-35 por 15 dias com dados ilimitados</li>
-    <li>Pré-instalem: Google Maps, Waze, Google Translate (com pacote italiano offline), Trenitalia, ATAC (Roma)</li>
-    <li>Avisem os bancos da viagem para evitar bloqueio nos cartões</li>
-    <li>Levem 1 cartão de crédito Visa + 1 Mastercard + €300-500 em espécie</li>
+    <li>Renove os passaportes — validade mínima de 6 meses após o retorno (até março/2027)</li>
+    <li>Tire a <strong>PID — Permissão Internacional para Dirigir</strong>. Obrigatória para alugar carro na Itália. Detran-RS, R$ 270 cada, válida 3 anos</li>
+    <li>Reserve com 3-6 meses: hotéis, restaurantes estrelados, Coliseu, Vaticano, Galleria Borghese</li>
+    <li>Seguro viagem com cobertura mínima de €60.000 (exigência Schengen)</li>
+    <li>Compre <strong>eSIM Italia</strong> (Holafly, Airalo, Saily) — €25-35 por 15 dias</li>
+    <li>Pré-instalem: Google Maps, Waze, Google Translate (italiano offline), Trenitalia, ATAC</li>
+    <li>Avisem os bancos para evitar bloqueio nos cartões</li>
+    <li>Levem 1 Visa + 1 Mastercard + €300-500 em espécie</li>
   </ul>
 </div>
 
 <div class="checklist">
   <h3>Cultura & etiqueta</h3>
   <ul>
-    <li><strong>Coperto</strong> e <strong>servizio</strong>: cobrança fixa por mesa (€2-5) é normal e legal. Gorjeta extra é apreciada mas não obrigatória — 5-10% se o serviço foi excelente</li>
-    <li>Almoço típico: 13h-15h. Jantar: 20h-22h30. Restaurantes nos intervalos fecham completamente</li>
-    <li>Igrejas: ombros e joelhos cobertos. Leve uma echarpe sempre no bolso</li>
+    <li><strong>Coperto</strong> e <strong>servizio</strong>: cobrança fixa por mesa (€2-5) é normal. Gorjeta extra 5-10% se serviço foi excelente</li>
+    <li>Almoço típico: 13h-15h. Jantar: 20h-22h30. Restaurantes fecham nos intervalos</li>
+    <li>Igrejas: ombros e joelhos cobertos — leve echarpe sempre no bolso</li>
     <li>Cappuccino só pela manhã. Italiano nunca toma com refeição salgada</li>
-    <li>Água em garrafa sempre é cobrada. "Acqua frizzante" (com gás) ou "naturale" (sem)</li>
-    <li>Cumprimente sempre com "Buongiorno" / "Buonasera" ao entrar em lojas, restaurantes, hotéis</li>
+    <li>Água em garrafa sempre cobrada — "frizzante" (com gás) ou "naturale" (sem)</li>
+    <li>Cumprimente sempre com "Buongiorno" / "Buonasera" ao entrar em estabelecimentos</li>
   </ul>
 </div>
 
 <div class="checklist">
   <h3>Segurança & logística</h3>
   <ul>
-    <li><strong>Roma</strong>: cuidado com batedores de carteira em metrô, ônibus 64 (Termini→Vaticano) e arredores do Coliseu. Bolsa cruzada na frente</li>
-    <li>Aluguel de carro: <strong>NUNCA</strong> deixe nada visível dentro do carro, mesmo por 10 minutos. Roubos em parking turístico são comuns no Sul</li>
-    <li>Carregue cópia digital dos passaportes (Google Drive/email) caso percam o físico</li>
-    <li>Em emergências: <strong>112</strong> (polícia europeia universal), <strong>118</strong> (ambulância)</li>
+    <li><strong>Roma</strong>: cuidado com batedores em metrô, ônibus 64 (Termini→Vaticano) e Coliseu. Bolsa cruzada na frente</li>
+    <li>Aluguel de carro: <strong>NUNCA</strong> deixe nada visível dentro do carro. Roubos em parking turístico são comuns no Sul</li>
+    <li>Cópia digital dos passaportes (Drive/email) em caso de perda</li>
+    <li>Emergências: <strong>112</strong> (polícia europeia), <strong>118</strong> (ambulância)</li>
     <li>Consulado-Geral do Brasil em Roma: +39 06 683 1330 (Via di Santa Maria dell'Anima, 32)</li>
-    <li>Farmácias: a verde "Farmacia" tem médico para conselhos simples. Funcionam em rodízio 24h em todas as cidades</li>
   </ul>
 </div>
 
 <div class="tip-box">
-  <h4>Pratos pugliesi que não podem deixar de provar</h4>
-  <p>
-    <strong>Orecchiette alle cime di rapa</strong> (massa em formato de orelhinha com brócolis amargos — prato-símbolo) ·
-    <strong>Burrata di Andria</strong> (queijo cremoso, melhor do que qualquer mussarela) ·
-    <strong>Crudo di mare</strong> (mariscos crus servidos como sashimi italiano — gambero rosso, ricci di mare, ostriche) ·
-    <strong>Tiella di riso, patate e cozze</strong> (gratin de arroz, batata e mexilhão) ·
-    <strong>Bombette pugliesi</strong> (rolinhos de carne com queijo, grelhados em fornelle) ·
-    <strong>Pasticciotto leccese</strong> (sobremesa local — massa folhada com creme, indispensável no café da manhã em Lecce) ·
-    <strong>Primitivo di Manduria</strong> e <strong>Negroamaro</strong> (vinhos tintos potentes da região)
-  </p>
+  <h4>Pratos pugliesi imperdíveis</h4>
+  <p><strong>Orecchiette alle cime di rapa</strong> · <strong>Burrata di Andria</strong> · <strong>Crudo di mare</strong> · <strong>Tiella di riso, patate e cozze</strong> · <strong>Bombette pugliesi</strong> · <strong>Pasticciotto leccese</strong> · vinhos <strong>Primitivo di Manduria</strong> e <strong>Negroamaro</strong></p>
 </div>
 
 </div>
 
 <footer>
-  Roteiro elaborado em 25/05/2026 para a viagem de Fernando, Ruth e casal acompanhante · Itália · 24/08 a 03/09/2026<br>
-  <em>Preços de hotéis e cardápios sujeitos a alteraç
+  Roteiro elaborado para a viagem de Fernando, Ruth e casal acompanhante · Itália · 24/08 a 03/09/2026<br>
+  <em>Preços de hotéis e cardápios sujeitos a alteração — confirmem na hora da reserva. Bom voo e boa viagem! 🇮🇹</em>
+</footer>
+
+<script>
+const allPlaces = [
+  {name:'Roma',coords:[41.9028,12.4964],color:'#7c3a3a',size:12,popup:'<b>★ Base 3 — Roma</b><br>3 noites · 31/08-03/09'},
+  {name:'Monopoli',coords:[40.9510,17.2986],color:'#7c3a3a',size:12,popup:'<b>★ Base 1 — Monopoli</b><br>4 noites · 24-28/08<br><i>Hotel: Don Ferrante</i>'},
+  {name:'Polignano a Mare',coords:[40.9959,17.2189],color:'#b87333',size:8,popup:'<b>Polignano a Mare</b><br>Lama Monachile, Grotta Palazzese'},
+  {name:'Alberobello',coords:[40.7833,17.2333],color:'#b87333',size:8,popup:'<b>Alberobello</b><br>Trulli UNESCO'},
+  {name:'Locorotondo',coords:[40.7531,17.3289],color:'#b87333',size:7,popup:'<b>Locorotondo</b><br>Vila branca circular'},
+  {name:'Martina Franca',coords:[40.7053,17.3367],color:'#b87333',size:7,popup:'<b>Martina Franca</b><br>Barroco elegante'},
+  {name:'Cisternino',coords:[40.7400,17.4178],color:'#b87333',size:7,popup:'<b>Cisternino</b><br>Vila branca + fornelle'},
+  {name:'Ostuni',coords:[40.7297,17.5781],color:'#b87333',size:8,popup:'<b>Ostuni</b><br>La Città Bianca'},
+  {name:'Trani',coords:[41.2789,16.4172],color:'#b87333',size:7,popup:'<b>Trani</b><br>Catedral românica · parada na volta'},
+  {name:'Lecce',coords:[40.3515,18.1750],color:'#7c3a3a',size:12,popup:'<b>★ Base 2 — Lecce</b><br>3 noites · 28-31/08<br><i>Hotel: Risorgimento Resort</i>'},
+  {name:'Otranto',coords:[40.1486,18.4914],color:'#b87333',size:8,popup:'<b>Otranto</b><br>Castelo Aragonese'},
+  {name:'Baia dei Turchi',coords:[40.1722,18.4889],color:'#0a7e8c',size:7,popup:'<b>Baia dei Turchi</b><br>Praia selvagem'},
+  {name:'Gallipoli',coords:[40.0556,17.9925],color:'#b87333',size:7,popup:'<b>Gallipoli</b><br>Opcional'},
+  {name:'Pescoluse (Maldivas)',coords:[39.8333,18.3500],color:'#0a7e8c',size:7,popup:'<b>Maldivas do Salento</b><br>Opcional'},
+  {name:'Santa Maria di Leuca',coords:[39.7967,18.3597],color:'#b87333',size:7,popup:'<b>Santa Maria di Leuca</b><br>Tip do tacão · opcional'},
+  {name:'Matera',coords:[40.6664,16.6094],color:'#5a2a8c',size:10,popup:'<b>Matera (Basilicata)</b><br>Sassi UNESCO · Day trip'}
+];
+
+const mainmap = L.map('mainmap').setView([40.7,16.5],7);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:18}).addTo(mainmap);
+allPlaces.forEach(p=>{L.circleMarker(p.coords,{radius:p.size,fillColor:p.color,color:'white',weight:2,fillOpacity:.95}).addTo(mainmap).bindPopup(p.popup);});
+
+// Rotas principais
+const routes = [
+  {name:'Roma → Monopoli', from:[41.8003,12.2389], to:[40.9510,17.2986], color:'#b87333'},
+  {name:'Monopoli ↔ atrações', from:[40.9510,17.2986], to:[40.7297,17.5781], color:'#7c3a3a', dash:'5,8'},
+  {name:'Monopoli → Lecce', from:[40.9510,17.2986], to:[40.3515,18.1750], color:'#b87333'},
+  {name:'Lecce ↔ Otranto/Matera', from:[40.3515,18.1750], to:[40.6664,16.6094], color:'#5a2a8c', dash:'5,8'},
+  {name:'Lecce → Roma', from:[40.3515,18.1750], to:[41.9028,12.4964], color:'#b87333'}
+];
+routes.forEach(r=>{
+  L.polyline([r.from,r.to],{color:r.color,weight:3,opacity:.7,dashArray:r.dash||null}).addTo(mainmap).bindPopup(r.name);
+});
+</script>
+
+</body>
+</html>
