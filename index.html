@@ -62,6 +62,21 @@ table.driving tr:last-child td{border-bottom:none}
 .local-tip strong{color:#3a5a1a}
 .local-tip::before{content:"🧑‍🍳 Dica de quem mora lá · ";font-weight:700;color:#4a7c2a;letter-spacing:.3px}
 
+/* Reservas confirmadas */
+.reservas-section{background:linear-gradient(135deg,#f0fff4 0%,#e0f0e5 100%);border:2px solid #2a8c3a;border-radius:14px;padding:24px;margin:24px 0;box-shadow:0 4px 14px rgba(42,140,58,.12)}
+.reservas-section h2{color:#1a5a2a;font-size:1.35em;margin-bottom:6px;font-weight:600}
+.reservas-section .reservas-subtitle{color:#3a6a4a;font-size:.92em;margin-bottom:20px}
+.res-block{background:#fff;border-radius:10px;padding:16px 18px;margin:12px 0;border-left:4px solid #2a8c3a}
+.res-block h3{color:#1a5a2a;font-size:1em;margin-bottom:6px;font-weight:600;letter-spacing:.3px}
+.res-block .res-badge{display:inline-block;background:#2a8c3a;color:#fff;padding:2px 10px;border-radius:12px;font-size:.72em;font-weight:700;letter-spacing:.5px;margin-right:8px;vertical-align:middle}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:8px}
+.res-item{background:#fafafa;padding:12px 14px;border-radius:8px;font-size:.9em;line-height:1.5}
+.res-item .res-label{color:#3a6a4a;font-size:.78em;text-transform:uppercase;letter-spacing:.4px;font-weight:600;display:block;margin-bottom:3px}
+.res-item strong{color:#1a1a1a}
+.res-item a{color:#1a5a2a;text-decoration:none;border-bottom:1px dotted #4a8c5a;font-size:.88em}
+.res-total{background:#1a5a2a;color:#fff;padding:14px 18px;border-radius:10px;margin-top:16px;text-align:center;font-size:.95em}
+.res-total strong{font-size:1.15em;display:block;margin-top:4px}
+
 /* Video references section */
 .videos-section{background:#fff;padding:24px;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.08);margin:20px 0}
 .videos-section h3{color:var(--primary);font-size:1.1em;margin:14px 0 10px;font-weight:600;letter-spacing:.3px;text-transform:uppercase}
@@ -188,6 +203,64 @@ footer em{color:var(--accent)}
 
 <div class="container">
 
+<div class="reservas-section">
+  <h2>✈️🏨 Reservas confirmadas</h2>
+  <div class="reservas-subtitle">Todas as passagens e hospedagens já pagas e confirmadas.</div>
+
+  <div class="res-block">
+    <h3><span class="res-badge">✈ VOO</span>Ida — LATAM 8120 · Business</h3>
+    <div class="res-grid">
+      <div class="res-item"><span class="res-label">Data / Horário</span><strong>Dom 23/08 · 17:50 GRU</strong> → Seg 24/08 · 10:15 FCO</div>
+      <div class="res-item"><span class="res-label">Rota</span>São Paulo (GRU) → Roma (Fiumicino)</div>
+      <div class="res-item"><span class="res-label">Passageiros / Classe</span>4 adultos · Premium Business</div>
+    </div>
+  </div>
+
+  <div class="res-block">
+    <h3><span class="res-badge">✈ VOO</span>Volta — LATAM 8121 · Business</h3>
+    <div class="res-grid">
+      <div class="res-item"><span class="res-label">Data / Horário</span><strong>Qui 03/09 · 13:05 FCO</strong> → 20:05 GRU</div>
+      <div class="res-item"><span class="res-label">Rota</span>Roma (Fiumicino) → São Paulo (GRU)</div>
+      <div class="res-item"><span class="res-label">Terminal saída</span>FCO Terminal 3 · Plaza Premium Lounge disponível</div>
+    </div>
+  </div>
+
+  <div class="res-block">
+    <h3><span class="res-badge">🏨 HOTEL 1</span>Vittorio Emanuele Charming Suites · Monopoli</h3>
+    <div class="res-grid">
+      <div class="res-item"><span class="res-label">Datas</span><strong>24 → 28/08</strong> · 4 noites</div>
+      <div class="res-item"><span class="res-label">Check-in / Check-out</span>Seg 24/08 a partir das 15:30 / Sex 28/08 até 10:00</div>
+      <div class="res-item"><span class="res-label">Total</span><strong>R$ 12.133</strong></div>
+      <div class="res-item"><span class="res-label">Localização</span><a href="https://maps.google.com/maps?q=40.95228303945548,17.299134862565214" target="_blank">Ver no Google Maps →</a></div>
+      <div class="res-item"><span class="res-label">Gerenciar</span><a href="https://secure.booking.com/confirmation.html?auth_key=uVpxYNMEHsOHlriv&source=mytrips" target="_blank">Abrir no Booking →</a></div>
+    </div>
+  </div>
+
+  <div class="res-block">
+    <h3><span class="res-badge">🏨 HOTEL 2</span>Tivoli Palazzo 1880 Lecce Hotel · Lecce</h3>
+    <div class="res-grid">
+      <div class="res-item"><span class="res-label">Datas</span><strong>28 → 31/08</strong> · 3 noites</div>
+      <div class="res-item"><span class="res-label">Total</span><strong>R$ 6.047</strong></div>
+      <div class="res-item"><span class="res-label">Gerenciar</span><a href="https://secure.booking.com/confirmation.html?auth_key=JvGAqwCM5gMhZf01&source=mytrips" target="_blank">Abrir no Booking →</a></div>
+    </div>
+  </div>
+
+  <div class="res-block">
+    <h3><span class="res-badge">🏨 HOTEL 3</span>Sofitel Roma Villa Borghese · Roma</h3>
+    <div class="res-grid">
+      <div class="res-item"><span class="res-label">Datas</span><strong>31/08 → 03/09</strong> · 3 noites</div>
+      <div class="res-item"><span class="res-label">Cancelamento</span>Grátis (até data limite)</div>
+      <div class="res-item"><span class="res-label">Total</span><strong>R$ 10.221</strong></div>
+      <div class="res-item"><span class="res-label">Gerenciar</span><a href="https://secure.booking.com/confirmation.html?auth_key=WUw0vy2AKPpCUOe1&source=mytrips" target="_blank">Abrir no Booking →</a></div>
+    </div>
+  </div>
+
+  <div class="res-total">
+    Total confirmado (voos + hospedagens): <strong>R$ 93.632</strong>
+    <span style="display:block;font-size:.82em;opacity:.85;margin-top:4px">4 adultos · não inclui carro, restaurantes, entradas e transferes</span>
+  </div>
+</div>
+
 <h2 class="section-title">Mapa do roteiro</h2>
 <p>Mapa interativo com todas as cidades, praias e rotas. Clique nos marcadores, arraste para mover, role para zoom.</p>
 
@@ -305,8 +378,8 @@ footer em{color:var(--accent)}
         <div class="timeline-item"><div class="timeline-time">10:15</div><div class="timeline-content"><strong>Pouso em Fiumicino</strong>. Imigração + bagagens + retirada do carro (~1h total). Café no terminal antes da estrada.</div></div>
         <div class="timeline-item"><div class="timeline-time">12:00</div><div class="timeline-content">Saída pela <strong>A1</strong> (Roma → Napoli), <strong>A16 → A14</strong>. Use Waze; agosto pega o "controesodo" italiano.</div></div>
         <div class="timeline-item"><div class="timeline-time">14:00</div><div class="timeline-content"><strong>Parada para almoço</strong> em Caserta (palácio real de relance) ou Autogrill estilizado.</div></div>
-        <div class="timeline-item"><div class="timeline-time">18:30</div><div class="timeline-content"><strong>Chegada em Monopoli</strong>. Check-in no Don Ferrante.</div></div>
-        <div class="timeline-item"><div class="timeline-time">20:30</div><div class="timeline-content"><strong>Jantar</strong> Don Ferrante ou Osteria Perricci.</div></div>
+        <div class="timeline-item"><div class="timeline-time">18:30</div><div class="timeline-content"><strong>Chegada em Monopoli</strong>. Check-in no <strong>Vittorio Emanuele Charming Suites</strong> (a partir de 15:30).</div></div>
+        <div class="timeline-item"><div class="timeline-time">20:30</div><div class="timeline-content"><strong>Jantar</strong>: Osteria Perricci (tradicional, ~3min do hotel) ou reserva com antecedência no Don Ferrante (fine dining com vista).</div></div>
       </div>
     </details>
   </div>
@@ -520,7 +593,7 @@ footer em{color:var(--accent)}
         <div class="timeline-item"><div class="timeline-time">10:00</div><div class="timeline-content"><strong>Tour pela Città Bianca</strong> — Catedral, Piazza della Libertà, gelato.</div></div>
         <div class="timeline-item"><div class="timeline-time">13:00</div><div class="timeline-content"><strong>Almoço</strong> — Osteria del Tempo Perso ou Cielo.</div></div>
         <div class="timeline-item"><div class="timeline-time">15:30</div><div class="timeline-content"><strong>Tarde:</strong> Capitolo (praia) ou Trani (drive 1h20).</div></div>
-        <div class="timeline-item"><div class="timeline-time">20:00</div><div class="timeline-content"><strong>Última jantar em Monopoli</strong>: Don Ferrante ou Osteria Perricci.</div></div>
+        <div class="timeline-item"><div class="timeline-time">20:00</div><div class="timeline-content"><strong>Última jantar em Monopoli</strong>: Osteria Perricci (tradicional) ou Don Ferrante (fine dining, reservar).</div></div>
       </div>
     </details>
   </div>
@@ -576,7 +649,7 @@ footer em{color:var(--accent)}
         <div class="timeline-item"><div class="timeline-time">10:00</div><div class="timeline-content">Check-out tranquilo do Monopoli.</div></div>
         <div class="timeline-item"><div class="timeline-time">11:00</div><div class="timeline-content">Drive para <strong>Lecce</strong> pela SS613.</div></div>
         <div class="timeline-item"><div class="timeline-time">13:00</div><div class="timeline-content"><strong>Almoço Alle Due Corti</strong>.</div></div>
-        <div class="timeline-item"><div class="timeline-time">15:00</div><div class="timeline-content"><strong>Check-in Risorgimento Resort</strong>.</div></div>
+        <div class="timeline-item"><div class="timeline-time">15:00</div><div class="timeline-content"><strong>Check-in Tivoli Palazzo 1880 Lecce Hotel</strong>.</div></div>
         <div class="timeline-item"><div class="timeline-time">17:30</div><div class="timeline-content"><strong>Primeira caminhada</strong> — Piazza Sant'Oronzo → Piazza del Duomo. Luz dourada na pedra leccese.</div></div>
         <div class="timeline-item"><div class="timeline-time">20:30</div><div class="timeline-content"><strong>Jantar especial</strong>: Bros' (Michelin) ou Nonna Tetti.</div></div>
       </div>
@@ -798,7 +871,7 @@ footer em{color:var(--accent)}
         <div class="timeline-item"><div class="timeline-time">12:30</div><div class="timeline-content"><strong>Parada Trani</strong>. Catedral, almoço Corteinfiore.</div></div>
         <div class="timeline-item"><div class="timeline-time">15:00</div><div class="timeline-content">Retomar A14 → A16 → A1.</div></div>
         <div class="timeline-item"><div class="timeline-time">19:00</div><div class="timeline-content"><strong>Chegada em Roma · DEVOLVER O CARRO</strong> em Termini ou FCO. Não dirija no centro — ZTL.</div></div>
-        <div class="timeline-item"><div class="timeline-time">20:30</div><div class="timeline-content"><strong>Check-in hotel Roma</strong>.</div></div>
+        <div class="timeline-item"><div class="timeline-time">20:30</div><div class="timeline-content"><strong>Check-in Sofitel Roma Villa Borghese</strong>.</div></div>
         <div class="timeline-item"><div class="timeline-time">21:30</div><div class="timeline-content"><strong>Jantar tranquilo</strong>: Armando al Pantheon ou Da Enzo al 29.</div></div>
       </div>
     </details>
@@ -1037,76 +1110,55 @@ footer em{color:var(--accent)}
   </div>
 </div>
 
-<h2 class="section-title">Hotéis</h2>
+<h2 class="section-title">Hotéis confirmados</h2>
 
-<h3 style="color:var(--primary-dark);font-size:1.2em;margin:24px 0 14px;font-weight:500">Monopoli · 4 noites · 24-28/08</h3>
-
-<div class="hotel-card">
-  <h4>★ Don Ferrante Dimore di Charme (RECOMENDADO)</h4>
-  <div class="price">A partir de €320/noite (duplo) · Boutique 5★</div>
-  <div class="tags"><span class="tag">Vista mar penhasco</span><span class="tag">15 quartos</span><span class="tag">Restaurante próprio</span><span class="tag">Spa</span></div>
-  <p>Hotel intimista construído dentro das antigas muralhas de Monopoli, sobre o mar. Varandas para o Adriático, café da manhã sob arcadas. 2 min do centro histórico a pé.</p>
-  <a class="btn" href="https://www.booking.com/hotel/it/don-ferrante.pt-br.html" target="_blank">Booking</a>
-  <a class="btn alt" href="https://www.donferrante.it/" target="_blank">Site oficial</a>
+<div class="hotel-card confirmed">
+  <div class="confirmed-badge">✓ CONFIRMADO · 24-28/08 · 4 noites</div>
+  <h4>★ Vittorio Emanuele Charming Suites — Monopoli</h4>
+  <div class="price">Total R$ 12.133 · Check-in seg 24/08 a partir das 15:30 · Check-out sex 28/08 até 10:00</div>
+  <div class="tags"><span class="tag">Centro histórico</span><span class="tag">Charming suites</span><span class="tag">Perto do mar</span></div>
+  <p>Localizado no coração de Monopoli, próximo ao porto antigo e à Cattedrale. Suítes com decoração charmosa em edifício histórico. Base perfeita para explorar a Puglia central (Polignano, Alberobello, Ostuni).</p>
+  <a class="btn" href="https://secure.booking.com/confirmation.html?auth_key=uVpxYNMEHsOHlriv&source=mytrips" target="_blank">Abrir reserva no Booking</a>
+  <a class="btn alt" href="https://maps.google.com/maps?q=40.95228303945548,17.299134862565214" target="_blank">Ver localização</a>
 </div>
+
+<div class="hotel-card confirmed">
+  <div class="confirmed-badge">✓ CONFIRMADO · 28-31/08 · 3 noites</div>
+  <h4>★ Tivoli Palazzo 1880 Lecce Hotel — Lecce</h4>
+  <div class="price">Total R$ 6.047 · Boutique no centro histórico</div>
+  <div class="tags"><span class="tag">Palazzo 1880</span><span class="tag">Centro Lecce</span><span class="tag">Pedra leccese</span></div>
+  <p>Palazzo histórico do século XIX restaurado em pleno centro de Lecce. Perto da Piazza Sant'Oronzo, Anfiteatro Romano e Basílica di Santa Croce. Atenção à ZTL de Lecce — confirmem permissão de acesso ao hotel de carro no check-in.</p>
+  <a class="btn" href="https://secure.booking.com/confirmation.html?auth_key=JvGAqwCM5gMhZf01&source=mytrips" target="_blank">Abrir reserva no Booking</a>
+</div>
+
+<div class="hotel-card confirmed">
+  <div class="confirmed-badge">✓ CONFIRMADO · 31/08-03/09 · 3 noites</div>
+  <h4>★ Sofitel Roma Villa Borghese — Roma</h4>
+  <div class="price">Total R$ 10.221 · Cancelamento grátis · 5 estrelas</div>
+  <div class="tags"><span class="tag">Sofitel Luxury</span><span class="tag">Villa Borghese</span><span class="tag">Terraço panorâmico</span><span class="tag">Spa</span></div>
+  <p>5 estrelas do grupo Accor, junto aos Jardins de Villa Borghese e a poucos passos da Piazza di Spagna. Terraço "Settimo Roman Cuisine & Terrace" com vista panorâmica de Roma. Excelente localização para explorar o Vaticano, Trevi, Pantheon e Centro Histórico a pé ou de metrô.</p>
+  <a class="btn" href="https://secure.booking.com/confirmation.html?auth_key=WUw0vy2AKPpCUOe1&source=mytrips" target="_blank">Abrir reserva no Booking</a>
+  <a class="btn alt" href="https://www.sofitel-roma-villaborghese.com/" target="_blank">Site oficial</a>
+</div>
+
+<h2 class="section-title">Masserias — jantar e visita</h2>
+<p>Duas masserias icônicas da Puglia. Não vão hospedar-se nelas, mas <strong>vale muito reservar um jantar ou almoço</strong> — ambas são experiências gastronômicas únicas da região.</p>
 
 <div class="hotel-card">
   <h4>★ Masseria Il Frantoio — Ostuni (campo)</h4>
-  <div class="price">A partir de €280/noite · Masseria autêntica</div>
-  <div class="tags"><span class="tag">Charme rural</span><span class="tag">Olival próprio</span><span class="tag">Jantar 8 tempos</span><span class="tag">Piscina</span></div>
-  <p>Casarão-fazenda do séc. XVI restaurado. Mesmo se não se hospedarem, o jantar de 8 tempos (€85/pax) é imperdível.</p>
-  <a class="btn" href="https://www.booking.com/hotel/it/masseria-il-frantoio.pt-br.html" target="_blank">Booking</a>
-  <a class="btn alt" href="https://www.masseriailfrantoio.it/" target="_blank">Site oficial</a>
+  <div class="price">Jantar degustação 8 tempos · €85/pax · reserva imprescindível</div>
+  <div class="tags"><span class="tag">Séc. XVI</span><span class="tag">Olival próprio</span><span class="tag">Cozinha da casa</span></div>
+  <p>Casarão-fazenda do séc. XVI restaurado, com produção própria de azeite. O jantar de 8 tempos, servido em salas históricas e no jardim quando faz calor, é considerado uma das melhores experiências gastronômicas da Puglia. Reservar com semanas de antecedência (site oficial ou telefone).</p>
+  <a class="btn" href="https://www.masseriailfrantoio.it/" target="_blank">Site oficial</a>
+  <a class="btn alt" href="mailto:info@masseriailfrantoio.it">Reservar por email</a>
 </div>
 
 <div class="hotel-card">
   <h4>★ Masseria Torre Coccaro — Savelletri</h4>
-  <div class="price">A partir de €400/noite · Luxo discreto</div>
-  <div class="tags"><span class="tag">Praia privada</span><span class="tag">Spa em caverna</span><span class="tag">Golfe</span><span class="tag">Relais & Châteaux</span></div>
-  <p>A masseria icônica da Puglia. Praia privada com lido elegante, spa em grutas naturais, campo de golfe 18 buracos.</p>
-  <a class="btn" href="https://www.booking.com/hotel/it/masseria-torre-coccaro.pt-br.html" target="_blank">Booking</a>
-  <a class="btn alt" href="https://www.masseriatorrecoccaro.com/" target="_blank">Site oficial</a>
-</div>
-
-<h3 style="color:var(--primary-dark);font-size:1.2em;margin:24px 0 14px;font-weight:500">Lecce · 3 noites · 28-31/08</h3>
-
-<div class="hotel-card confirmed">
-  <div class="confirmed-badge">✓ HOTEL CONFIRMADO</div>
-  <h4>★ Risorgimento Resort — Lecce</h4>
-  <div class="price">Boutique 5★ no coração do centro histórico</div>
-  <div class="tags"><span class="tag">Centro histórico</span><span class="tag">Pedra leccese</span><span class="tag">Rooftop 360°</span><span class="tag">Garagem própria</span></div>
-  <p>Via Augusto Imperatore 19, a um passo da Piazza Sant'Oronzo e do anfiteatro romano. Edifício histórico restaurado em pedra leccese. Restaurante "Le Quattro Spezierie" no rooftop com vista 360°. Garagem essencial em Lecce (ZTL ativa).</p>
-  <a class="btn" href="https://www.booking.com/hotel/it/risorgimento-resort.pt-br.html" target="_blank">Booking</a>
-  <a class="btn alt" href="https://www.risorgimentoresort.it/" target="_blank">Site oficial</a>
-</div>
-
-<h3 style="color:var(--primary-dark);font-size:1.2em;margin:24px 0 14px;font-weight:500">Roma · 3 noites · 31/08-03/09</h3>
-
-<div class="hotel-card">
-  <h4>★ Hotel Locarno — Piazza del Popolo (RECOMENDADO)</h4>
-  <div class="price">A partir de €350/noite · Histórico boutique</div>
-  <div class="tags"><span class="tag">Liberty/Art Déco</span><span class="tag">Pátio com jardim</span><span class="tag">Bar lendário</span><span class="tag">100 anos</span></div>
-  <p>Hotel histórico de 1925 perto da Piazza del Popolo, frequentado por escritores e cineastas. Atmosfera nostálgica com lareira, pátio com fonte. 5 min da Spagna e Villa Borghese.</p>
-  <a class="btn" href="https://www.booking.com/hotel/it/locarno.pt-br.html" target="_blank">Booking</a>
-  <a class="btn alt" href="https://www.hotellocarno.com/" target="_blank">Site oficial</a>
-</div>
-
-<div class="hotel-card">
-  <h4>★ Singer Palace Hotel — Trevi</h4>
-  <div class="price">A partir de €400/noite · Rooftop dos sonhos</div>
-  <div class="tags"><span class="tag">Rooftop 360°</span><span class="tag">3 min Fontana di Trevi</span><span class="tag">30 quartos</span></div>
-  <p>Boutique de luxo num palácio do séc. XIX a 200m da Fontana di Trevi. O destaque é o terraço com vista panorâmica.</p>
-  <a class="btn" href="https://www.booking.com/hotel/it/singer-palace.pt-br.html" target="_blank">Booking</a>
-  <a class="btn alt" href="https://www.singerpalacehotel.com/" target="_blank">Site oficial</a>
-</div>
-
-<div class="hotel-card">
-  <h4>★ Hotel Vilòn — Via dell'Arancio</h4>
-  <div class="price">A partir de €500/noite · Escondido & magnífico</div>
-  <div class="tags"><span class="tag">Palazzo Borghese</span><span class="tag">Pátio secreto</span><span class="tag">Restaurante Adelaide</span></div>
-  <p>Joia escondida ao lado do Palazzo Borghese. Atmosfera de casa particular aristocrática. Restaurante Adelaide (excelente).</p>
-  <a class="btn" href="https://www.booking.com/hotel/it/vilon.pt-br.html" target="_blank">Booking</a>
-  <a class="btn alt" href="https://www.hotelvilon.com/" target="_blank">Site oficial</a>
+  <div class="price">Almoço/jantar no restaurante Coccaro Beach Club · Relais & Châteaux</div>
+  <div class="tags"><span class="tag">Praia privada</span><span class="tag">Spa em caverna</span><span class="tag">Restaurante estrelado</span></div>
+  <p>Masseria icônica da rede Relais & Châteaux com praia privada, spa em grutas naturais e restaurante "Coccaro Beach Club" à beira-mar. Vale reservar um <strong>almoço estendido</strong> na praia (~€120/pax) ou uma <strong>day pass</strong> com acesso à piscina/spa.</p>
+  <a class="btn" href="https://www.masseriatorrecoccaro.com/" target="_blank">Site oficial</a>
 </div>
 
 <h2 class="section-title">Checklist & dicas práticas</h2>
@@ -1206,8 +1258,8 @@ footer em{color:var(--accent)}
 
 <script>
 const allPlaces = [
-  {name:'Roma',coords:[41.9028,12.4964],color:'#7c3a3a',size:12,popup:'<b>★ Base 3 — Roma</b><br>3 noites · 31/08-03/09'},
-  {name:'Monopoli',coords:[40.9510,17.2986],color:'#7c3a3a',size:12,popup:'<b>★ Base 1 — Monopoli</b><br>4 noites · 24-28/08<br><i>Hotel: Don Ferrante</i>'},
+  {name:'Roma',coords:[41.9028,12.4964],color:'#7c3a3a',size:12,popup:'<b>★ Base 3 — Roma</b><br>3 noites · 31/08-03/09<br><i>Hotel: Sofitel Roma Villa Borghese</i>'},
+  {name:'Monopoli',coords:[40.9510,17.2986],color:'#7c3a3a',size:12,popup:'<b>★ Base 1 — Monopoli</b><br>4 noites · 24-28/08<br><i>Hotel: Vittorio Emanuele Charming Suites</i>'},
   {name:'Polignano a Mare',coords:[40.9959,17.2189],color:'#b87333',size:8,popup:'<b>Polignano a Mare</b><br>Lama Monachile, Grotta Palazzese'},
   {name:'Alberobello',coords:[40.7833,17.2333],color:'#b87333',size:8,popup:'<b>Alberobello</b><br>Trulli UNESCO'},
   {name:'Locorotondo',coords:[40.7531,17.3289],color:'#b87333',size:7,popup:'<b>Locorotondo</b><br>Vila branca circular'},
@@ -1215,7 +1267,7 @@ const allPlaces = [
   {name:'Cisternino',coords:[40.7400,17.4178],color:'#b87333',size:7,popup:'<b>Cisternino</b><br>Vila branca + fornelle'},
   {name:'Ostuni',coords:[40.7297,17.5781],color:'#b87333',size:8,popup:'<b>Ostuni</b><br>La Città Bianca'},
   {name:'Trani',coords:[41.2789,16.4172],color:'#b87333',size:7,popup:'<b>Trani</b><br>Catedral românica · parada na volta'},
-  {name:'Lecce',coords:[40.3515,18.1750],color:'#7c3a3a',size:12,popup:'<b>★ Base 2 — Lecce</b><br>3 noites · 28-31/08<br><i>Hotel: Risorgimento Resort</i>'},
+  {name:'Lecce',coords:[40.3515,18.1750],color:'#7c3a3a',size:12,popup:'<b>★ Base 2 — Lecce</b><br>3 noites · 28-31/08<br><i>Hotel: Tivoli Palazzo 1880</i>'},
   {name:'Otranto',coords:[40.1486,18.4914],color:'#b87333',size:8,popup:'<b>Otranto</b><br>Castelo Aragonese'},
   {name:'Baia dei Turchi',coords:[40.1722,18.4889],color:'#0a7e8c',size:7,popup:'<b>Baia dei Turchi</b><br>Praia selvagem'},
   {name:'Gallipoli',coords:[40.0556,17.9925],color:'#b87333',size:7,popup:'<b>Gallipoli</b><br>Opcional'},
